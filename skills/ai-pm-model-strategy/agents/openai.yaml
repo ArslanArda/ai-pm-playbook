@@ -1,7 +1,0 @@
-interface:
-  display_name: "AI Model Strategy"
-  short_description: "Choose model strategy with clear tradeoffs"
-  default_prompt: "Use $ai-pm-model-strategy to recommend the right model strategy for this feature, including routing or prompt-first tradeoffs if relevant."
-
-policy:
-  allow_implicit_invocation: true

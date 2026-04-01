@@ -1,7 +1,0 @@
-interface:
-  display_name: "AI Agent System Design"
-  short_description: "Design agent workflows with PM-grade rigor"
-  default_prompt: "Use $ai-pm-agent-system-design to help me decide whether this AI workflow should stay simple or become agentic, and what pattern fits best."
-
-policy:
-  allow_implicit_invocation: true

@@ -45,23 +45,16 @@ If you only have 15 minutes, start with:
 
 ## Use With Codex Skills
 
-This repo now also includes self-contained Codex skills under [`skills/`](./skills/).
+This repo now also includes a self-contained Codex skill under [`skills/`](./skills/).
 
 That means you can use the playbook in two ways:
 
 - as a normal GitHub-readable playbook
-- as installable Codex skills that wrap the playbook content
+- as one installable Codex skill that wraps the full playbook content
 
-The installable skills live here:
+The installable skill lives here:
 
 - [`skills/ai-pm-playbook`](./skills/ai-pm-playbook/)
-- [`skills/ai-pm-prd-writing`](./skills/ai-pm-prd-writing/)
-- [`skills/ai-pm-evaluation-design`](./skills/ai-pm-evaluation-design/)
-- [`skills/ai-pm-model-strategy`](./skills/ai-pm-model-strategy/)
-- [`skills/ai-pm-agent-system-design`](./skills/ai-pm-agent-system-design/)
-- [`skills/ai-pm-team-operations`](./skills/ai-pm-team-operations/)
-- [`skills/ai-pm-prompt-engineering`](./skills/ai-pm-prompt-engineering/)
-- [`skills/ai-pm-ux-patterns`](./skills/ai-pm-ux-patterns/)
 
 See [`skills/README.md`](./skills/README.md) for installation examples.
 

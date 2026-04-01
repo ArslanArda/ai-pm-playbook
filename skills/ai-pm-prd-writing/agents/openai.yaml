@@ -1,7 +1,0 @@
-interface:
-  display_name: "AI PRD Writing"
-  short_description: "Write and review AI PRDs with launch rigor"
-  default_prompt: "Use $ai-pm-prd-writing to help me draft or review an AI PRD with evaluation criteria, fallback behavior, and edge cases."
-
-policy:
-  allow_implicit_invocation: true

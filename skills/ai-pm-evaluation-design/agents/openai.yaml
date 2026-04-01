@@ -1,7 +1,0 @@
-interface:
-  display_name: "AI Evaluation Design"
-  short_description: "Design AI evals, graders, and error taxonomies"
-  default_prompt: "Use $ai-pm-evaluation-design to help me design an evaluation system for this AI feature, including rubric, dataset, and launch gates."
-
-policy:
-  allow_implicit_invocation: true
