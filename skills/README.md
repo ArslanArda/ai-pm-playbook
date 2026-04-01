@@ -8,6 +8,8 @@ The design is intentional. The playbook is one integrated operating system for A
 
 So the public skill package exposes one primary skill and bundles the full playbook inside its `references/` directory.
 
+When this skill is used inside a workspace that contains `my-product/PRODUCT_CONTEXT.md`, Codex should read that file directly and use it as the default product context. Manual copy-paste remains the fallback for plain chat environments without file access.
+
 ## Install From GitHub
 
 If you already have Codex and its skill installer available locally, install the single integrated skill from this repo.

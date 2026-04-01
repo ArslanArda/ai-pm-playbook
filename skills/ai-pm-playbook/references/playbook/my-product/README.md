@@ -8,7 +8,7 @@ That is why this repo includes a product context file. You fill it out once, the
 
 ## What This Directory Is For
 
-Use this directory to create a local, private description of your product that you can paste into LLM conversations.
+Use this directory to create a local, private description of your product that you can paste into LLM conversations or let Codex read directly from your workspace.
 
 The committed file is:
 
@@ -50,6 +50,14 @@ When you want help from an LLM:
 2. Open the relevant section’s `SKILL.md`.
 3. Paste both into the conversation.
 4. Ask the model to guide you through that process for your product.
+
+When you are using Codex in this repository:
+
+1. Keep `my-product/PRODUCT_CONTEXT.md` in the workspace.
+2. Use the integrated `ai-pm-playbook` skill or the playbook files normally.
+3. Codex should read `my-product/PRODUCT_CONTEXT.md` directly instead of making you paste it manually each time.
+
+Manual copy-paste is still the portable fallback for generic LLM chat tools. It should not be the default workflow inside Codex when the file already exists locally.
 
 Example prompts:
 

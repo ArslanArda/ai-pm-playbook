@@ -27,7 +27,7 @@ If you are deciding what to build, how to scope it, how to evaluate it, how to e
 
 - **Based on production experience, not theory.** The frameworks assume you have real users, real constraints, and real pressure to ship.
 - **AI-consumable by design.** Every major section includes a `SKILL.md` file you can paste into ChatGPT, Claude, Gemini, or another LLM to get guided through the process.
-- **Personalized to your product.** Fill out [`my-product/PRODUCT_CONTEXT.template.md`](./my-product/PRODUCT_CONTEXT.template.md), save it as `PRODUCT_CONTEXT.md`, and your conversations become materially more useful.
+- **Personalized to your product.** Fill out [`my-product/PRODUCT_CONTEXT.template.md`](./my-product/PRODUCT_CONTEXT.template.md), save it as `PRODUCT_CONTEXT.md`, and your conversations become materially more useful. In Codex, the integrated skill can read that file directly from the workspace.
 - **Opinionated, not vague.** The playbook makes recommendations and explains when to deviate.
 - **No code.** This is pure product thinking: markdown, templates, diagrams, checklists, and examples.
 
@@ -35,7 +35,9 @@ If you are deciding what to build, how to scope it, how to evaluate it, how to e
 
 1. Fork this repository.
 2. Copy [`my-product/PRODUCT_CONTEXT.template.md`](./my-product/PRODUCT_CONTEXT.template.md) to `my-product/PRODUCT_CONTEXT.md` and fill in your product context.
-3. Open any section’s `SKILL.md`, paste it into your LLM together with `my-product/PRODUCT_CONTEXT.md`, and ask the model to guide you through the process for your product.
+3. Use the repo in the way that fits your environment:
+   - in Codex, keep `my-product/PRODUCT_CONTEXT.md` in the workspace and let the integrated skill read it directly
+   - in generic LLM chat tools, paste the relevant `SKILL.md` together with `my-product/PRODUCT_CONTEXT.md`
 
 If you only have 15 minutes, start with:
 
@@ -57,6 +59,8 @@ The installable skill lives here:
 - [`skills/ai-pm-playbook`](./skills/ai-pm-playbook/)
 
 See [`skills/README.md`](./skills/README.md) for installation examples.
+
+When used inside Codex, the skill is designed to look for `my-product/PRODUCT_CONTEXT.md` in the active workspace before asking for manual context input.
 
 ## Playbook Sections
 
