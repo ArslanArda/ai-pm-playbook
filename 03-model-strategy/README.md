@@ -14,6 +14,16 @@ PMs often get pulled into model conversations late, after engineering has alread
 
 This section is about treating model strategy as a product decision framework, not a vendor shopping exercise.
 
+## What This Section Will Tell You To Do
+
+1. Start prompt-first unless you can show repeated evidence that prompt, context, and evaluation are plateauing.
+2. Buy specialized capability before building custom adaptation unless the task is strategically core and your data advantage is real.
+3. Route only when you can measure quality by tier and explain what happens when the cheap path fails.
+4. Tie model quality to product risk, not engineering preference.
+5. Refuse to discuss "best model" without first naming the quality bar, latency ceiling, and acceptable failure mode.
+
+These are defaults, not balanced options.
+
 ## The Three Common Traps
 
 ### Trap 1: Buying model quality you do not need
@@ -62,9 +72,19 @@ For many v1 features, the best path is:
 
 before custom training, elaborate routing, or multi-provider complexity.
 
+Default rule:
+
+- stay prompt-first until you have at least `2` meaningful iteration rounds with stable eval methodology and still cannot close the highest-priority gap
+- do not escalate complexity based on demo disappointment alone
+
 ### Recommendation 2: Route only when the task naturally separates into tiers
 
 Routing is most useful when requests are clearly distinguishable by difficulty, risk, or user value. If every request is equally hard or equally sensitive, routing may add more noise than benefit.
+
+Default rule:
+
+- if the cheap path cannot be monitored separately, do not add routing
+- if fallback behavior is undefined, routing is premature
 
 ### Recommendation 3: Tie model quality to product risk
 
@@ -73,6 +93,12 @@ Higher-risk steps deserve stronger models, better validation, or stronger fallba
 ### Recommendation 4: Talk in tradeoffs, not absolutes
 
 There is no universally “best” model strategy. There is only the right tradeoff for a specific product problem.
+
+What strong tradeoff talk sounds like:
+
+- "This premium model improves long-tail intent interpretation by `5.2` points, but adds `1.4s` to P95 latency and doubles unit cost."
+- "This routing strategy saves `41%` on cost, but only if we accept a `2` point quality drop on low-value sessions."
+- "This vendor solves Turkish speech recognition faster, but creates dependency risk we should revisit after launch."
 
 ## A Simple Sequence
 
@@ -96,6 +122,36 @@ Use this section when:
 - a feature works in demo form but economics or latency do not scale
 - prompt iteration is plateauing and the team needs to know what to try next
 - the team is debating whether to fine-tune, route, or buy a specialized capability
+
+## Bad Calls To Avoid
+
+### Bad call 1: Premium everywhere because the team fears embarrassment
+
+This usually means:
+
+- weak task definition
+- weak eval discipline
+- no clear failure hierarchy
+
+The result is often higher cost without better product control.
+
+### Bad call 2: Build because buying feels strategically shallow
+
+This usually means:
+
+- the organization wants a moat before it has product clarity
+- proprietary data quality is assumed, not proven
+
+The result is a long infrastructure path chasing a still-moving target.
+
+### Bad call 3: Routing for optics
+
+This usually means:
+
+- the architecture diagram looks sophisticated
+- nobody can prove the cheap path is safe
+
+The result is complexity without defensible economics.
 
 ## Use It With Other Sections
 

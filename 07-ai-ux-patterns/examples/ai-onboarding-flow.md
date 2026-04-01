@@ -1,77 +1,148 @@
 # Example: AI Onboarding Flow
 
-## Context
+## Scenario
 
-A product launched a new AI assistant feature. The team needed a first-run experience that:
+A marketplace launched an AI search assistant for logged-in mobile users. The team knew the biggest risk was not first-run confusion. It was overexpectation.
 
-- explained what the feature could help with
-- set limits clearly enough to avoid overexpectation
-- got users to first value quickly
+If users treated the assistant like a general local expert, the product would fail immediately on:
 
-## Screen 1: Intro Card
+- neighborhood safety questions
+- investment advice
+- unsupported listing facts
+
+The onboarding goal was therefore narrow:
+
+- get the user to one successful first task
+- define the feature boundary in under `20` seconds
+- teach correction and manual fallback early
+
+Initial rollout targets:
+
+- onboarding completion above `65%`
+- first successful AI-assisted search above `45%`
+- first-session abandonment after AI handoff below `18%`
+
+## The Bad Version The Team Rejected
+
+The first draft looked impressive and underperformed.
+
+### What it showed
+
+- a large hero message saying `Ask me anything about homes`
+- animated examples across buying, renting, pricing, and neighborhood advice
+- a long disclaimer hidden behind `Learn more`
+
+### What went wrong in testing
+
+- `31%` of users asked unsupported neighborhood or legal questions in their first session
+- first-query disappointment was high because the hero message implied broad expertise
+- users did not discover the manual filters after a weak answer
+
+The lesson was simple: broad promise creates narrow patience.
+
+## The Shipped Flow
+
+### Screen 1: Contract, Not Hype
 
 Headline:
 
-- “Tell us what you need in plain language”
+`Describe the home you want. I'll turn it into a search you can refine.`
 
 Supporting copy:
 
-- focuses on what the feature is good at
-- avoids claiming broad intelligence
+`Best for: combining budget, area, room count, and must-have features in one request.`
 
-Example:
+Secondary line:
 
-- “You can describe your preferences naturally. We’ll turn them into a search or suggestion you can refine.”
+`Not for: legal advice, neighborhood safety claims, or facts not shown in listing data.`
 
-## Screen 2: Capability And Limit Boundaries
+This screen deliberately reduced ambition. That was the right trade.
 
-Instead of a long disclaimer, show two short columns:
+### Screen 2: One Easy First Win
 
-- “Good at”
-- “Not for”
+Starter chips:
 
-Example:
+- `2+1 rental under 35,000 in Kadikoy`
+- `family-friendly homes near metro in Atasehir`
+- `show me listings with parking and balcony`
 
-- Good at: summarizing preferences, refining search, drafting first-pass content
-- Not for: legal advice, unsupported facts, final approval of high-risk actions
+The PM blocked open-ended freeform as the first-run default. The goal was guided success, not maximum expression.
 
-Why this works:
+### Screen 3: Interpreted Request Review
 
-It sets expectations without sounding defensive.
+Before results, the UI showed editable interpretation chips:
 
-## Screen 3: First Guided Task
+- `For rent`
+- `Kadikoy`
+- `2+1`
+- `Budget: up to 35,000`
 
-The product offers one easy starting action:
+And one soft preference chip:
 
-- a sample prompt
-- one-tap starter examples
-- a narrow first task
+- `Near metro`
 
-The goal is first success, not full feature discovery.
+Helper copy:
 
-## Screen 4: Feedback And Control Education
+`Check these before I search. You can edit or remove any item.`
 
-After first output:
+This screen mattered because it converted invisible AI reasoning into visible user control.
 
-- show how to edit, correct, or refine
-- show where users can switch to manual controls if needed
+### Screen 4: First Result State
 
-This matters because many AI features fail by onboarding users into magic, not collaboration.
+When the search succeeded, the UI showed:
 
-## Screen 5: Trust Reinforcement
+- results grid
+- short AI summary
+- an always-visible `Edit search` action
+- a `Use filters instead` link beneath the summary
 
-If the first output works:
+Summary copy example:
 
-- highlight how the result was interpreted or grounded
-- keep the explanation brief
+`I searched for rentals in Kadikoy up to 35,000 and kept "near metro" as a preference, not a hard filter.`
 
-If it does not:
+That last clause reduced surprise later.
 
-- provide a low-friction correction path instead of pretending the user should try again blindly
+### Screen 5: Failure Or Low-Confidence State
 
-## Key UX Lessons
+If the interpretation was weak, the product did not show a vague apology. It used one of two states.
 
-- onboarding should define the contract, not just celebrate the feature
-- first-run experience should bias toward an easy win
-- user control should be visible early
-- expectation setting is strongest when framed as capability boundaries, not legalistic warning text
+#### Retrieval-critical ambiguity
+
+`Before I search: should I treat 35,000 as monthly rent or purchase budget?`
+
+#### Unsupported request
+
+`I can help narrow listings, but I can't judge whether an area is safe or a good investment.`
+
+In both cases the manual path remained one tap away.
+
+## Review Metrics After Beta Week 1
+
+| Metric | Target | Actual |
+| --- | --- | --- |
+| Onboarding completion | `65%` | `72%` |
+| First successful AI-assisted search | `45%` | `49%` |
+| Unsupported first query rate | below `20%` | `14%` |
+| Abandonment after AI handoff | below `18%` | `16%` |
+
+## What Still Failed
+
+- some users still read `family-friendly` as a guaranteed neighborhood judgment
+- the `Use filters instead` path was underused on smaller screens
+- a few starter chips implied too much confidence about soft preferences
+
+The PM response was not to broaden the feature promise. It was to tighten chip copy and make the fallback path more visible.
+
+## What This Example Teaches
+
+### 1. Onboarding should define the contract, not celebrate the model
+
+The rejected version was exciting and strategically wrong.
+
+### 2. First-run AI should expose interpretation, not hide it
+
+Editable chips did more for trust than any generic disclaimer.
+
+### 3. Narrower promise beats broader disappointment
+
+The best onboarding copy in AI products often sounds less magical than marketing wants.

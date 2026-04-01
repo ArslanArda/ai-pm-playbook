@@ -16,6 +16,20 @@ Mission question:
 
 Can we ship a safe closed beta for conversational search that improves complex-query sessions without damaging trust?
 
+## Mission Brief Excerpt
+
+The PM wrote a short brief before kickoff. The useful part was not the prose. It was the forced choices.
+
+| Field | Decision |
+| --- | --- |
+| Target user | Logged-in mobile users with at least one prior saved search |
+| Mission question | Can we justify a closed beta for conversational search? |
+| Success metrics | complex-query success rate, fallback recovery rate, P95 latency |
+| Launch blockers | hallucinated listing facts above `2%`; silent constraint-drop above `5%`; P95 latency above `4.5s` |
+| Non-goals | neighborhood advice, voice input, cross-session memory, English launch |
+| Review ritual | weekly AI review every Tuesday with PM, eng, design, analytics |
+| End-of-cycle decision | no-go, closed beta, or broader rollout |
+
 ## Week 0: Mission Brief
 
 The PM created a brief with:
@@ -38,6 +52,18 @@ The PM kept the weekly review grounded by separating:
 
 This prevented the classic mistake of reporting the project as “70% done” when the hardest product questions were still unresolved.
 
+### Weekly review agenda
+
+The team used the same agenda every week:
+
+1. last week's decision and what changed
+2. scorecard against launch blockers
+3. top `5` failure examples from live or eval traffic
+4. cost and latency snapshot
+5. scope-change requests and whether they were accepted or rejected
+
+That rhythm stopped the meeting from becoming status theater.
+
 ## Week 2: The First Real Quality Shock
 
 Initial evals showed the system often dropped one user constraint silently. It sounded coherent while being directionally wrong.
@@ -51,6 +77,17 @@ What the PM did:
 Why it mattered:
 
 Without a structured mission review, the team might have kept polishing response copy instead of fixing the real issue.
+
+### Metrics snapshot
+
+| Metric | Week 1 | Week 2 |
+| --- | --- | --- |
+| Eval pass rate | `61%` | `64%` |
+| Silent constraint-drop | `11%` | `13%` |
+| Fallback recovery rate | `71%` | `70%` |
+| P95 latency | `3.8s` | `4.0s` |
+
+The pass rate looked like progress. The blocker metric got worse. That is why the team separated "looks better" from "is safer to launch."
 
 ## Week 3: Scope Creep Pressure
 
@@ -68,6 +105,20 @@ The PM used the mission brief to respond:
 
 This was the week where the mission framework proved its value. It made “not now” defensible.
 
+### What leadership heard versus what the team knew
+
+Leadership heard:
+
+- "The assistant is basically working."
+
+The team knew:
+
+- the happy path was working
+- the ambiguous-query path still risked confident wrong retrieval
+- the launch blockers were not met
+
+That gap is normal in AI work. The PM's job is to make it visible without sounding like the team is stalling.
+
 ## Week 4: Weekly AI Review Changed The Roadmap
 
 The weekly review surfaced that clarification questions were overused. Users were abandoning after getting slowed down for non-critical ambiguities.
@@ -82,6 +133,14 @@ This decision came from ritualized review, not intuition. The team could point t
 - clarification frequency
 - abandonment after clarification
 - sample session review
+
+### Decision log excerpt
+
+| Decision | Why |
+| --- | --- |
+| Stop clarifying on soft preferences | abandonment after clarification was `19%` |
+| Keep clarification for listing type ambiguity | retrieval changed materially without it |
+| Delay English support | no evidence it changed the mission outcome this cycle |
 
 ## Week 5: Launch Gate Debate
 
@@ -98,6 +157,17 @@ The team did not pretend the feature was “done.” They chose a narrower launc
 - 5% of traffic
 - logged-in users only
 - clear fallback to standard search
+
+### Launch gate table
+
+| Gate | Threshold | Week 5 result | Decision |
+| --- | --- | --- | --- |
+| Hallucinated listing facts | below `2%` | `1.4%` | pass |
+| Silent constraint-drop | below `5%` | `4.7%` | pass, but watch |
+| P95 latency | below `4.5s` | `4.2s` | pass |
+| Fallback recovery rate | above `80%` | `78%` | fail for broad launch |
+
+This was the key moment. The team had enough to justify a limited beta, but not enough to pretend the feature was ready for everyone.
 
 ## Week 6: Demo, Retro, Carryover
 
@@ -125,6 +195,19 @@ Answer:
 - demo excitement nearly masked unresolved quality risks
 - scope creep nearly pulled in unrelated capabilities
 - explanation-copy polish could have distracted from deeper intent issues
+
+## Carryover Brief For The Next Cycle
+
+The PM did not write "keep improving quality." That would have been lazy.
+
+Carryover priorities:
+
+- reduce fallback recovery gap from `78%` to above `82%`
+- improve typo-heavy district handling
+- validate whether English support matters for the target cohort
+- keep the same non-goals unless beta evidence changes them
+
+That preserved momentum without widening the mission by default.
 
 ## Lessons Learned
 
