@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Prompt Engineering"
+  short_description: "Review and evolve prompts as product behavior"
+  default_prompt: "Use $ai-pm-prompt-engineering to help me specify, review, or debug a production prompt like a product artifact."
+
+policy:
+  allow_implicit_invocation: true

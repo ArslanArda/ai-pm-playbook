@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI Team Operations"
+  short_description: "Run AI PM work with better cadence and ownership"
+  default_prompt: "Use $ai-pm-team-operations to help me set up mission cadence, DACI, review rituals, and stakeholder communication for AI work."
+
+policy:
+  allow_implicit_invocation: true

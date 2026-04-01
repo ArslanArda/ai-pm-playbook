@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI UX Patterns"
+  short_description: "Design AI UX for trust, control, and fallbacks"
+  default_prompt: "Use $ai-pm-ux-patterns to help me design the UX of this AI feature, including latency, confidence, fallback, and interaction patterns."
+
+policy:
+  allow_implicit_invocation: true

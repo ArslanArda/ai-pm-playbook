@@ -1,0 +1,7 @@
+interface:
+  display_name: "AI PM Playbook"
+  short_description: "Route AI PM work to the right playbook section"
+  default_prompt: "Use $ai-pm-playbook to choose the right AI PM playbook section for this task and guide me with the most relevant framework or template."
+
+policy:
+  allow_implicit_invocation: true

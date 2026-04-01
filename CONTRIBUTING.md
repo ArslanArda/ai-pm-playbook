@@ -46,6 +46,12 @@ section-name/
 
 Every major section should work independently. Someone should be able to land on that folder and understand what it is for without reading the whole repo.
 
+## Skill Wrappers
+
+This repo also ships Codex-installable skills under [`skills/`](./skills/README.md).
+
+If you change content in the main playbook folders, keep the matching bundled content under the related `skills/<skill-name>/references/` directory in sync. The wrapper skill files should stay concise; the heavier reference material belongs under `references/`.
+
 ## `SKILL.md` Requirements
 
 Every `SKILL.md` must include:
