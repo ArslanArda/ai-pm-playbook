@@ -1,7 +1,7 @@
 interface:
   display_name: "AI PM Playbook"
-  short_description: "Route AI PM work to the right playbook section"
-  default_prompt: "Use $ai-pm-playbook to choose the right AI PM playbook section for this task and guide me with the most relevant framework or template."
+  short_description: "Integrated AI PM copilot for PRDs, evals, prompts, agent design, UX, and ops"
+  default_prompt: "Use $ai-pm-playbook as an integrated AI PM skill. Read my workspace product context if available, pull in the smallest relevant module set, and guide me to a concrete deliverable or recommendation."
 
 policy:
   allow_implicit_invocation: true

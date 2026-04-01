@@ -1,14 +1,14 @@
-# Personalize The Playbook
+# Product Context Setup
 
-This directory is how you make the playbook relevant to your actual product.
+This directory is how you make the skill relevant to your actual product.
 
 Most generic AI advice fails because it ignores context. The right model strategy for a B2C marketplace is different from the right model strategy for a regulated B2B workflow. The right fallback for an AI-generated listing description is different from the right fallback for a support copilot answering a customer in real time.
 
-That is why this repo includes a product context file. You fill it out once, then use it with any `SKILL.md` file in the repository to get guidance tailored to your product, users, team, constraints, and priorities.
+That is why the playbook includes a product context file. You fill it out once, then use it with the integrated skill or a relevant module `SKILL.md` to get guidance tailored to your product, users, team, constraints, and priorities.
 
 ## What This Directory Is For
 
-Use this directory to create a local, private description of your product that you can paste into LLM conversations or let Codex read directly from your workspace.
+Use this directory to create a local, private description of your product that Codex can read directly from the workspace.
 
 The committed file is:
 
@@ -25,7 +25,7 @@ The local file you create is:
 3. Start with Sections 1-3 if you are short on time.
 4. Add Sections 4-8 as your AI work becomes more concrete.
 
-The template is deliberately structured so an LLM can parse it quickly. Use plain language, but be specific. “We want better search” is weak. “Users struggle to express tradeoffs like commute vs. neighborhood quality in a keyword-only search flow” is useful.
+The template is deliberately structured so Codex can parse it quickly. Use plain language, but be specific. “We want better search” is weak. “Users struggle to express tradeoffs like commute vs. neighborhood quality in a keyword-only search flow” is useful.
 
 ## What To Include
 
@@ -40,48 +40,40 @@ The template asks for:
 - current AI priorities
 - optional screen descriptions or screenshots
 
-You do not need perfect answers. You need enough context for an LLM to reason with the right constraints.
+You do not need perfect answers. You need enough context for Codex to reason with the right constraints.
 
 ## How To Use It
 
-When you want help from an LLM:
-
-1. Open your completed `PRODUCT_CONTEXT.md`.
-2. Open the relevant section’s `SKILL.md`.
-3. Paste both into the conversation.
-4. Ask the model to guide you through that process for your product.
-
-When you are using Codex in this repository:
+When you are using Codex:
 
 1. Keep `my-product/PRODUCT_CONTEXT.md` in the workspace.
-2. Use the integrated `ai-pm-playbook` skill or the playbook files normally.
-3. Codex should read `my-product/PRODUCT_CONTEXT.md` directly instead of making you paste it manually each time.
+2. Use the integrated `ai-pm-playbook` skill.
+3. Let the skill read `my-product/PRODUCT_CONTEXT.md` directly instead of making you paste it manually each time.
 
-Manual copy-paste is still the portable fallback for generic LLM chat tools. It should not be the default workflow inside Codex when the file already exists locally.
+Manual copy-paste is still the portable fallback for plain chat tools that cannot access local files. It should not be the default workflow inside Codex when the file already exists locally.
 
-Example prompts:
+Typical tasks:
 
-- “Use this product context and this skill to help me write an AI PRD for conversational search.”
-- “Guide me through model routing decisions for this product.”
-- “Act as my AI PM copilot and walk me through the evaluation design process.”
+- write an AI PRD for conversational search
+- choose a routing strategy for this product
+- design an evaluation plan for a new feature
+- review AI UX fallback behavior for a risky workflow
 
 ## Keep It Local
 
-`PRODUCT_CONTEXT.md` is ignored by Git through [`./.gitignore`](./.gitignore) so you do not accidentally commit proprietary information to a public repo.
+`PRODUCT_CONTEXT.md` is ignored by Git through [`./.gitignore`](./.gitignore) so you do not accidentally commit proprietary information.
 
 The intended workflow is:
 
-- commit the template
+- keep the template in version control
 - create your own local `PRODUCT_CONTEXT.md`
 - keep updating it as your product evolves
 
-If you need to share your context with colleagues, do it deliberately. Do not assume a public fork is the right place for product-sensitive details.
+If you need to share your context with colleagues, do it deliberately. Do not assume a public location is the right place for product-sensitive details.
 
 ## Practical Advice
 
 - Update the file when a major AI initiative changes.
 - Add metrics where possible. They anchor conversations.
-- Be honest about constraints. The model gives better advice when you include budget, latency, compliance, and team limitations.
-- If you use screenshots in an LLM that supports images, attach them alongside the text file rather than forcing everything into prose.
-
-This one file is the highest-leverage setup step in the entire repo. It turns the playbook from a static reference into a personalized working system.
+- Be honest about constraints. The skill gives better advice when you include budget, latency, compliance, and team limitations.
+- If you use screenshots in an environment that supports images, attach them alongside the text file rather than forcing everything into prose.
