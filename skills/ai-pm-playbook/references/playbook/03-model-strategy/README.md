@@ -77,11 +77,12 @@ There is no universally “best” model strategy. There is only the right trade
 ## A Simple Sequence
 
 ```mermaid
-flowchart LR
-    A["Define task and quality bar"] --> B["Estimate latency and cost constraints"]
-    B --> C["Decide if prompt-only is enough"]
-    C --> D["If not, choose model adaptation or routing strategy"]
-    D --> E["Measure quality lift against added complexity"]
+flowchart TD
+    A["Define task"] --> B["Set quality bar"]
+    B --> C["Set cost and latency limits"]
+    C --> D["Check prompt-only path"]
+    D --> E["Choose routing or adaptation"]
+    E --> F["Measure lift vs. complexity"]
 ```
 
 If you skip straight to comparison shopping, you will make an architecture decision before you make a product decision.

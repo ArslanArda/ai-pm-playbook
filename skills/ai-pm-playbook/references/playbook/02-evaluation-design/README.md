@@ -45,12 +45,12 @@ If those questions are not answered, evaluation will produce data but not decisi
 ## The Evaluation Loop
 
 ```mermaid
-flowchart LR
-    A["Define quality rubric"] --> B["Build eval set"]
+flowchart TD
+    A["Define rubric"] --> B["Build eval set"]
     B --> C["Run system"]
-    C --> D["Score with humans and/or graders"]
-    D --> E["Analyze error patterns"]
-    E --> F["Improve product, prompt, or model"]
+    C --> D["Score outputs"]
+    D --> E["Analyze errors"]
+    E --> F["Improve product or model"]
     F --> B
 ```
 

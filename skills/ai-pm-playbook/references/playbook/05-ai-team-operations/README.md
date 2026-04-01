@@ -57,10 +57,10 @@ If the operating model is weak, every one of those questions becomes a debate ra
 ## The Recommended Operating Shape
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["6-week mission"] --> B["Weekly AI review"]
-    B --> C["Daily eval and issue checks"]
-    C --> D["Cycle retrospective and carryover decision"]
+    B --> C["Daily eval checks"]
+    C --> D["Retro and carryover"]
     D --> A
 ```
 

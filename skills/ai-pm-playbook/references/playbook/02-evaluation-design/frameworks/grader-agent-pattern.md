@@ -5,12 +5,12 @@ LLM graders can help evaluate LLM outputs at scale, but they are not magical tru
 ## The Full Loop
 
 ```mermaid
-flowchart LR
-    A["Define grading rubric"] --> B["Generate system output"]
-    B --> C["Grader scores output"]
-    C --> D["Human sample review"]
-    D --> E["Compare grader vs. human agreement"]
-    E --> F["Refine rubric or grader prompt"]
+flowchart TD
+    A["Define rubric"] --> B["Generate output"]
+    B --> C["Grade output"]
+    C --> D["Human review sample"]
+    D --> E["Check agreement"]
+    E --> F["Refine rubric or grader"]
 ```
 
 ## What A Good Grader Should Evaluate

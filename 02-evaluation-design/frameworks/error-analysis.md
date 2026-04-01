@@ -13,11 +13,11 @@ Sometimes those fixes help. Often they miss the actual failure mechanism.
 ## A Simple Error Analysis Flow
 
 ```mermaid
-flowchart LR
-    A["Collect failed examples"] --> B["Group by failure type"]
-    B --> C["Rank by frequency and user harm"]
-    C --> D["Map each category to likely root cause"]
-    D --> E["Choose targeted fix"]
+flowchart TD
+    A["Collect failures"] --> B["Group by type"]
+    B --> C["Rank by harm and frequency"]
+    C --> D["Map root cause"]
+    D --> E["Choose fix"]
 ```
 
 ## Core Error Categories
