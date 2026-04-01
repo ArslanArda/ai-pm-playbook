@@ -34,6 +34,8 @@ If the file does not exist yet, create it from `PRODUCT_CONTEXT.template.md` and
 
 Inside Codex, keep `my-product/PRODUCT_CONTEXT.md` in the workspace and let the skill read it directly. Manual paste is the fallback path for non-file-aware chat environments.
 
+If you learn something new or want fresh inputs considered later, do not treat the file as a manual maintenance chore. You can tell Codex to update product context with the new information, and the skill should merge it into `my-product/PRODUCT_CONTEXT.md`.
+
 ### 2. Pick the module that matches your current problem
 
 Examples:
@@ -58,6 +60,7 @@ Inside Codex, the better workflow is:
 
 - keep `my-product/PRODUCT_CONTEXT.md` in the workspace
 - let the installed `ai-pm-playbook` skill read it from disk automatically
+- if priorities, constraints, or market facts change, tell the skill to update `my-product/PRODUCT_CONTEXT.md`
 - pull in only the supporting module files that add signal
 - use manual paste only if file access is unavailable
 
@@ -78,6 +81,7 @@ If the work gets stuck, load one of the relevant framework or example files into
 Strong usage patterns:
 
 - you load your product context
+- you update the product context when meaningful new information appears
 - you ask for a concrete deliverable
 - you answer the skill’s questions with specific constraints
 - you force a recommendation instead of settling for generic option lists
@@ -86,6 +90,7 @@ Strong usage patterns:
 Weak usage patterns:
 
 - you use the skill without product context
+- you keep fresh product information only in chat and never merge it into the context file
 - you ask for “ideas” without naming a decision or artifact
 - you accept generic output without pressure-testing it
 - you treat the first draft as final
@@ -109,5 +114,7 @@ Say you are building conversational search for a marketplace.
 4. Pull in the example PRD from [`../01-ai-prd-writing/examples/conversational-search.md`](../01-ai-prd-writing/examples/conversational-search.md) if you need a realistic reference.
 5. When the PRD starts getting specific about evals, load [`../02-evaluation-design/`](../02-evaluation-design/README.md).
 6. When agent complexity appears, load [`../04-ai-agent-system-design/`](../04-ai-agent-system-design/README.md).
+
+If you then learn that budget increased, the target persona shifted, or the business priority changed, tell the skill to update `my-product/PRODUCT_CONTEXT.md` before continuing. That keeps later recommendations aligned with the latest reality.
 
 In practice, good AI PM work crosses sections. The playbook is modular so you can combine them without re-learning the whole system.

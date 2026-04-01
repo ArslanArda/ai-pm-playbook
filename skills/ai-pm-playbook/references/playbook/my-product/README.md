@@ -49,6 +49,7 @@ When you are using Codex:
 1. Keep `my-product/PRODUCT_CONTEXT.md` in the workspace.
 2. Use the integrated `ai-pm-playbook` skill.
 3. Let the skill read `my-product/PRODUCT_CONTEXT.md` directly instead of making you paste it manually each time.
+4. If you learn something new, change priorities, or want fresh market or product data remembered, just tell Codex to update the product context. The skill should edit `my-product/PRODUCT_CONTEXT.md` for you.
 
 Manual copy-paste is still the portable fallback for plain chat tools that cannot access local files. It should not be the default workflow inside Codex when the file already exists locally.
 
@@ -58,6 +59,13 @@ Typical tasks:
 - choose a routing strategy for this product
 - design an evaluation plan for a new feature
 - review AI UX fallback behavior for a risky workflow
+- update the product context with new user research, market shifts, or current priorities
+
+Example update prompts:
+
+- “Update my product context: we are now prioritizing renter workflows over buyer workflows for the next two quarters.”
+- “Add this to product context: our AI budget increased to $8K/month and English support is no longer required.”
+- “Remember this market input in product context before we brainstorm new features.”
 
 ## Keep It Local
 
@@ -77,3 +85,4 @@ If you need to share your context with colleagues, do it deliberately. Do not as
 - Add metrics where possible. They anchor conversations.
 - Be honest about constraints. The skill gives better advice when you include budget, latency, compliance, and team limitations.
 - If you use screenshots in an environment that supports images, attach them alongside the text file rather than forcing everything into prose.
+- You do not need to manually rewrite the file every time. In Codex, you can give fresh context in chat and ask the skill to merge it into `PRODUCT_CONTEXT.md`.

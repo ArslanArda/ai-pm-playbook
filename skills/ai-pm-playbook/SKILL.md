@@ -37,15 +37,21 @@ Use these bundled playbook areas together when the task requires it:
 3. If `my-product/PRODUCT_CONTEXT.md` does not exist, check whether the user has another clearly named local product-context file in the workspace and use it if appropriate.
 4. If no local product context file exists, fall back to `references/playbook/my-product/PRODUCT_CONTEXT.template.md` and ask the user to create or provide the missing context.
 5. Only ask the user to paste the full product context manually when file access is not available or the context lives outside the current workspace.
-6. Start from the closest primary module, but pull in adjacent modules when the task spans them.
-7. Treat PRD, eval, prompts, model strategy, orchestration, UX, and rollout decisions as connected when they are connected in the user’s actual workflow.
-8. Produce a concrete output: a draft artifact, a recommendation with rationale, a decision framework, or a prioritized next-step plan.
-9. Keep guidance practical, opinionated, and PM-oriented.
+6. If the user provides fresh product information or asks to update product context, treat that as an edit request for `my-product/PRODUCT_CONTEXT.md`.
+7. When updating product context, merge the new information into the right sections, preserve useful existing details, and normalize the content into the template structure instead of dumping raw notes.
+8. If the context file does not exist yet and the user provides product details, create `my-product/PRODUCT_CONTEXT.md` from the bundled template and fill it with the provided information.
+9. Start from the closest primary module, but pull in adjacent modules when the task spans them.
+10. Treat PRD, eval, prompts, model strategy, orchestration, UX, and rollout decisions as connected when they are connected in the user’s actual workflow.
+11. Produce a concrete output: a draft artifact, a recommendation with rationale, a decision framework, or a prioritized next-step plan.
+12. Keep guidance practical, opinionated, and PM-oriented.
 
 ## Working rules
 
 - Treat a workspace-local `my-product/PRODUCT_CONTEXT.md` as the preferred context source in Codex.
 - Use manual copy-paste instructions only as the fallback path for non-file-aware LLM workflows.
+- If the user says new product facts out loud in chat and wants them remembered, update `my-product/PRODUCT_CONTEXT.md` directly.
+- Preserve the structured template and rewrite terse notes into clean, durable context.
+- Ask a follow-up question only when the user’s update is too ambiguous to place safely.
 - Do not keep modules artificially separate if the task clearly crosses boundaries.
 - Prefer the relevant section `SKILL.md`, template, and one or two frameworks over bulk-loading everything at once.
 - Use bundled references as working input, not as a substitute for actually helping the user.

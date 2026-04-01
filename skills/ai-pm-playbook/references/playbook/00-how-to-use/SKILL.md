@@ -39,6 +39,13 @@ Use this skill when you need to run the AI PM Playbook as an actual working meth
 - **Output:** A context-loaded chat where the model can reason about your actual product instead of a generic SaaS example.
 - **Common mistakes:** Asking the model to do detailed work without any product context; leaving out critical constraints such as privacy or language; assuming the model will infer your business model or user needs; defaulting to manual paste when the file already exists locally.
 
+### Step 2A: Update Product Context When Reality Changes
+
+- **What to do:** If you have new product facts, market data, constraints, or priorities, update `my-product/PRODUCT_CONTEXT.md` before continuing. In Codex, you can provide the update in chat and let the skill merge it into the file for you.
+- **Key questions to answer:** Is this a new fact that should persist across future sessions? Which section of the context does it belong in? Does it replace old information or add to it?
+- **Output:** A current product context file that reflects the latest reality.
+- **Common mistakes:** Keeping fresh context only in one conversation; forgetting to replace outdated assumptions; letting the context file drift away from the product’s actual state.
+
 ### Step 3: Choose The Right Playbook Module
 
 - **What to do:** Match your problem to the module that owns it. If you are doing spec work, start with AI PRD writing. If you are debugging poor outputs, evaluation or prompt debugging may be the right entry point. If the problem is architectural, start with agent system design or model strategy.
@@ -104,6 +111,7 @@ Rule of thumb:
 ## Quality Checklist
 
 - [ ] Did I provide enough product context for the model to reason about my actual situation?
+- [ ] Did I update the product context file with any new durable information before moving forward?
 - [ ] Did I define a concrete output or decision before starting?
 - [ ] Did I choose the section that matches the real bottleneck rather than the most fashionable topic?
 - [ ] Did I ask the model to guide me step by step instead of generating generic advice?
@@ -121,6 +129,12 @@ Rule of thumb:
 - **Description:** You paste only the skill or ask a broad question with no product context.
 - **Why it happens:** It feels faster to skip setup, especially when you are in a hurry.
 - **What to do instead:** Provide at least product overview, users, flow, and major constraints before asking for advice.
+
+### 1A. The Stale-Context Trap
+
+- **Description:** You have new business realities, but the product context file still reflects the old world.
+- **Why it happens:** Teams discuss changes in chat or meetings and assume everyone will remember them later.
+- **What to do instead:** Merge durable new facts into `my-product/PRODUCT_CONTEXT.md` as soon as they matter for future product decisions.
 
 ### 2. The Section Mismatch
 

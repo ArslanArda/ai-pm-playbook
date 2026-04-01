@@ -39,6 +39,8 @@ If you only do one setup step in the whole repo, do this one.
 
 If you are using Codex inside this repo, keep `my-product/PRODUCT_CONTEXT.md` in the workspace and let Codex read it directly. The manual paste workflow is mainly for generic LLM chats that cannot access local files.
 
+If you have fresh product information later, you should also be able to type it in chat and ask Codex to merge it into `my-product/PRODUCT_CONTEXT.md` instead of manually rewriting the file each time.
+
 ### 2. Pick the section that matches your current problem
 
 Examples:
@@ -69,6 +71,7 @@ For Codex specifically, the better workflow is:
 
 - keep `my-product/PRODUCT_CONTEXT.md` in the repo
 - let the installed `ai-pm-playbook` skill read it from disk automatically
+- if priorities, constraints, or market context changes, ask Codex to update `my-product/PRODUCT_CONTEXT.md`
 - only paste the file manually if you are working in a plain chat environment without file access
 
 ### 5. Pull in frameworks, templates, and examples as needed
@@ -109,6 +112,7 @@ Third, it gives you a clear review standard. The checklist and anti-patterns mak
 Strong usage patterns:
 
 - you include your product context
+- you update the product context when important facts change
 - you ask for a concrete deliverable
 - you answer the model’s questions with specific constraints
 - you push the model to recommend, not just brainstorm
@@ -117,6 +121,7 @@ Strong usage patterns:
 Weak usage patterns:
 
 - you paste only the skill without context
+- you keep fresh context only in one chat and never merge it into the product context file
 - you ask for “ideas” without saying what problem matters
 - you accept generic output without pressure-testing it
 - you treat the model’s first draft as final
@@ -157,6 +162,8 @@ You would:
 4. Pull in the example PRD from [`../01-ai-prd-writing/examples/conversational-search.md`](../01-ai-prd-writing/examples/conversational-search.md) if you want a realistic reference.
 5. When the PRD starts getting specific about evals, open [`../02-evaluation-design/`](../02-evaluation-design/README.md).
 6. When agent complexity appears, pull in [`../04-ai-agent-system-design/`](../04-ai-agent-system-design/README.md).
+
+If your priorities or market constraints change midstream, update `my-product/PRODUCT_CONTEXT.md` before continuing so the next recommendations reflect the new reality.
 
 In practice, good AI PM work crosses sections. The repo is modular so you can combine them without re-learning the whole system.
 

@@ -32,6 +32,7 @@ Use the skill to guide end-to-end AI PM work across:
 4. Combine modules when the task clearly spans them.
 5. Produce practical outputs, not generic advice.
 6. Prefer synthesis and recommendation over repo navigation.
+7. If the user provides new product facts and wants them remembered, update the local product context file as part of the workflow.
 
 ## Product Context Rule
 
@@ -51,3 +52,4 @@ Use this order:
 - Keep PRD, eval, prompt, UX, and launch decisions connected when the task requires it.
 - Do not drift into engineering implementation unless the user explicitly asks.
 - Read references yourself and apply them. Do not ask the user to manually stitch the playbook together unless they explicitly want that workflow.
+- When product context changes, keep the local context file current so later tasks benefit automatically.

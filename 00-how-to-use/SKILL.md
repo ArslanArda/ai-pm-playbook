@@ -39,6 +39,13 @@ Use this skill when you want to turn the playbook from a static reference into a
 - **Output:** A context-loaded chat where the model can reason about your actual product instead of a generic SaaS example.
 - **Common mistakes:** Asking the model to do detailed work without any product context; leaving out critical constraints such as privacy or language; assuming the model will infer your business model or user needs.
 
+### Step 2A: Update Product Context When Reality Changes
+
+- **What to do:** If you have new product facts, market data, constraints, or priorities, add them to `PRODUCT_CONTEXT.md` before continuing. In Codex, you can give the update in chat and ask it to merge the information into the file for you.
+- **Key questions to answer:** Is this a new fact that should persist across future sessions? Which section of the context does it belong in? Does it replace old information or add to it?
+- **Output:** A current product context file that reflects the latest reality.
+- **Common mistakes:** Keeping fresh context only in one conversation; forgetting to replace outdated assumptions; letting the context file drift away from the product’s actual state.
+
 ### Step 3: Choose The Right Playbook Section
 
 - **What to do:** Match your problem to the section that owns it. If you are doing spec work, start with AI PRD writing. If you are debugging poor outputs, evaluation or prompt debugging may be the right entry point. If the problem is architectural, start with agent system design or model strategy.

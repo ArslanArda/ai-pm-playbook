@@ -56,6 +56,7 @@ When you are using Codex in this repository:
 1. Keep `my-product/PRODUCT_CONTEXT.md` in the workspace.
 2. Use the integrated `ai-pm-playbook` skill or the playbook files normally.
 3. Codex should read `my-product/PRODUCT_CONTEXT.md` directly instead of making you paste it manually each time.
+4. If you have fresh product context, new market input, or new priorities, you should be able to type that update in chat and ask Codex to merge it into `my-product/PRODUCT_CONTEXT.md`.
 
 Manual copy-paste is still the portable fallback for generic LLM chat tools. It should not be the default workflow inside Codex when the file already exists locally.
 
@@ -64,6 +65,8 @@ Example prompts:
 - “Use this product context and this skill to help me write an AI PRD for conversational search.”
 - “Guide me through model routing decisions for this product.”
 - “Act as my AI PM copilot and walk me through the evaluation design process.”
+- “Update my product context with this new information and use it for later feature discovery work.”
+- “Add this fresh market context to `my-product/PRODUCT_CONTEXT.md` before we brainstorm new AI features.”
 
 ## Keep It Local
 
@@ -83,5 +86,6 @@ If you need to share your context with colleagues, do it deliberately. Do not as
 - Add metrics where possible. They anchor conversations.
 - Be honest about constraints. The model gives better advice when you include budget, latency, compliance, and team limitations.
 - If you use screenshots in an LLM that supports images, attach them alongside the text file rather than forcing everything into prose.
+- In Codex, you should not need to manually maintain the file for every small change. You can give fresh context in chat and ask Codex to merge it into `PRODUCT_CONTEXT.md`.
 
 This one file is the highest-leverage setup step in the entire repo. It turns the playbook from a static reference into a personalized working system.
