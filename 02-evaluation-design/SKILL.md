@@ -142,3 +142,29 @@ Use stricter blocker definitions and more human oversight, especially on sensiti
 ### High-Volume Consumer Features
 
 Add more coverage for tail behaviors, multilingual variation, and latency-sensitive categories.
+
+### Stateful Multi-Turn Features
+
+If the feature updates an existing state rather than responding from scratch, change the basic eval unit.
+
+Instead of evaluating:
+
+- `user input -> output`
+
+evaluate:
+
+- `previous state + new user input -> updated state or updated output`
+
+Examples:
+
+- previous search intent plus new message to updated search intent
+- previous agent plan plus user correction to revised plan
+- prior draft plus edit instruction to new draft
+
+For these systems, add session-level metrics alongside turn-level metrics:
+
+- context carryover accuracy
+- stale context carryover rate
+- required context drop rate
+- wrong reset or replacement rate
+- full-session pass rate across 3-6 turns

@@ -41,6 +41,7 @@ If those questions are not answered, evaluation will produce data but not decisi
 - [`frameworks/grader-agent-pattern.md`](./frameworks/grader-agent-pattern.md): using LLM graders to evaluate LLM outputs without fooling yourself
 - [`frameworks/error-analysis.md`](./frameworks/error-analysis.md): how to categorize failures so the team knows what to fix
 - [`frameworks/eval-data-strategy.md`](./frameworks/eval-data-strategy.md): how to build and maintain datasets that stay useful over time
+- [`examples/multi-turn-context-management.md`](./examples/multi-turn-context-management.md): artifact-heavy example of evaluating a text-only conversational search agent that updates intent across turns
 
 ## The Evaluation Loop
 
@@ -73,6 +74,16 @@ An average score of 4.1 is far less useful than knowing that the system fails mo
 ### Recommendation 4: Version eval data like a product asset
 
 If the dataset is invisible, stale, or overfit, it will slowly stop telling you the truth.
+
+### Recommendation 5: Stateful features need stateful eval units
+
+If the feature carries context across turns, do not evaluate it only on isolated prompts. Score the state transition itself, such as:
+
+- previous intent plus new user message to updated intent
+- prior conversation state plus current turn to updated plan
+- earlier draft plus edit instruction to revised output
+
+Otherwise you will miss the most harmful failures: dropped prior context, stale carryover, and wrong reset behavior.
 
 ## When To Use This Section
 

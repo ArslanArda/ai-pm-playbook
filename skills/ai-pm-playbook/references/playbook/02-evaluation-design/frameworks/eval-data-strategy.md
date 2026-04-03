@@ -58,6 +58,25 @@ Edge cases should not be random curiosities. Include them because they represent
 - multilingual or localization challenges
 - prompt injection or misuse attempts where relevant
 
+## Stateful Systems Need Stateful Rows
+
+If the feature carries conversation state, draft state, or workflow state across turns, an eval row should usually include more than the latest user message.
+
+For example, a useful row may need:
+
+- prior turn history
+- previous system state or previous intent text
+- new user message
+- expected relation to prior state, such as append, refine, replace, or reset
+- expected updated output
+
+This matters because stateful systems often fail in ways that single-turn evals cannot see:
+
+- dropping earlier constraints that should persist
+- keeping stale constraints that should be removed
+- treating a refinement like a reset
+- treating a new search like a continuation
+
 ## Realistic Use Scenarios
 
 ### Scenario 1: Conversational Search
@@ -67,6 +86,10 @@ The team starts with 80 examples: 40 common queries, 20 ambiguous queries, 10 un
 ### Scenario 2: Content Generation
 
 The team versions the eval set monthly by adding recent failure cases from production while keeping a core stable benchmark for regression checks.
+
+### Scenario 3: Multi-Turn Conversational Search
+
+A marketplace search agent rewrites the active intent text after each user turn. The eval set stores rows in the form `previous_intent + new_message -> updated_intent` rather than only `message -> query`. Slices include append, refine, broaden, partial replacement, full reset, and ambiguous follow-ups such as “onlari cikar” or “bir de yeni binalari getir.”
 
 ## Questions To Ask Your Engineering Team
 

@@ -34,6 +34,13 @@ Use categories that imply different product actions:
 - latency or timeout failure
 - routing or tool-selection error
 
+For stateful systems, add categories for context management failures:
+
+- dropped prior-turn constraint
+- stale context carryover
+- wrong turn-relation classification
+- harmful over-narrowing during state update
+
 ## Prioritization Matrix
 
 | Category | Frequency | User harm | Fix urgency |
@@ -54,6 +61,10 @@ You discover that overall pass rate is acceptable, but a large share of negative
 ### Scenario 2: Support Copilot
 
 The system fails disproportionately on policy-sensitive tickets. Error analysis shows retrieval noise rather than general drafting weakness. That changes the roadmap from “better model” to “better knowledge segmentation.”
+
+### Scenario 3: Multi-Turn Search Refinement
+
+A conversational search agent looks strong on isolated single-turn queries but weak in session review. Error analysis shows that the main problem is not language understanding in the latest message. It is stale carryover from earlier turns, especially when users switch city, change rent to sale, or start a fresh search without saying so explicitly. That points to context update logic and state reset rules, not a generic prompt rewrite.
 
 ## Questions To Ask Your Engineering Team
 
