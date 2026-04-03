@@ -13,6 +13,7 @@ Use this directory to create a local, private description of your product that y
 The committed file is:
 
 - [`PRODUCT_CONTEXT.template.md`](./PRODUCT_CONTEXT.template.md): the blank template with instructions and example depth
+- [`qa-reference.md`](./qa-reference.md): a guided question set you can use to interview a team and fill or update the context file
 
 The local file you create is:
 
@@ -24,6 +25,7 @@ The local file you create is:
 2. Fill in the sections with your real product details.
 3. Start with Sections 1-3 if you are short on time.
 4. Add Sections 4-8 as your AI work becomes more concrete.
+5. If you do not know what to write yet, use [`qa-reference.md`](./qa-reference.md) and answer the minimum useful questions first.
 
 The template is deliberately structured so an LLM can parse it quickly. Use plain language, but be specific. “We want better search” is weak. “Users struggle to express tradeoffs like commute vs. neighborhood quality in a keyword-only search flow” is useful.
 
@@ -34,7 +36,9 @@ The template asks for:
 - product overview and business context
 - core users and personas
 - current product flows and pain points
+- agent-relevant UX surfaces and action constraints
 - relevant AI/ML systems and data assets
+- tools, APIs, and logs an agent could use
 - team structure and decision rights
 - budget, latency, privacy, and localization constraints
 - current AI priorities
@@ -50,6 +54,13 @@ When you want help from an LLM:
 2. Open the relevant section’s `SKILL.md`.
 3. Paste both into the conversation.
 4. Ask the model to guide you through that process for your product.
+
+If your context is incomplete:
+
+1. Open [`qa-reference.md`](./qa-reference.md).
+2. Answer the shortest set of questions needed for the current decision.
+3. Rewrite those answers into `PRODUCT_CONTEXT.md`.
+4. Use the updated context file for the actual working session.
 
 When you are using Codex in this repository:
 
@@ -67,6 +78,7 @@ Example prompts:
 - “Act as my AI PM copilot and walk me through the evaluation design process.”
 - “Update my product context with this new information and use it for later feature discovery work.”
 - “Add this fresh market context to `my-product/PRODUCT_CONTEXT.md` before we brainstorm new AI features.”
+- “Ask me the minimum questions needed to update `my-product/PRODUCT_CONTEXT.md` for an AI agent workflow.”
 
 ## Keep It Local
 

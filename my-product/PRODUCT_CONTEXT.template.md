@@ -45,6 +45,8 @@ Describe the core product flows most relevant to AI features.
 - Description: [e.g., Property search — user enters criteria, browses listings, filters, views details, contacts agent]
 - Current pain points: [e.g., Keyword search is rigid, users struggle to express complex preferences like "quiet neighborhood near good schools"]
 - Current metrics: [e.g., 40% search-to-listing-view rate, 3% listing-to-contact rate, avg 4.2 searches per session]
+- Where an AI agent would appear: [e.g., Search bar assistant, floating copilot, results-page refinement panel]
+- UX rules for that agent: [e.g., Can ask one clarifying question, must cite listing-based reasoning, cannot auto-contact agents]
 
 **Core flow 2: [Flow name]**
 - Description: [e.g., Listing creation — agent uploads photos, fills property details, writes description, publishes]
@@ -66,6 +68,10 @@ Describe the core product flows most relevant to AI features.
 - [e.g., OpenAI GPT-4o for conversational features, GPT-4o-mini for classification tasks]
 - [e.g., No models in production yet — evaluating options]
 
+**Tool/action surfaces relevant to AI agents:**
+- [e.g., Search API, listing retrieval endpoint, saved-search creation, CRM note creation]
+- [e.g., Agent may draft actions but cannot publish, send, or modify user data without confirmation]
+
 **Key infrastructure:**
 - [e.g., Backend: Python/FastAPI, hosted on AWS]
 - [e.g., Database: PostgreSQL + Elasticsearch for search]
@@ -77,6 +83,10 @@ Describe the core product flows most relevant to AI features.
 - [e.g., 200K user search queries per day — logged but not labeled]
 - [e.g., Customer support chat logs — 50K conversations/month]
 - [What data do you have that could train, fine-tune, or evaluate AI features?]
+
+**Evaluation assets available:**
+- [e.g., Labeled QA samples, red-team transcripts, support escalations, human review logs]
+- [e.g., No labeled eval set yet — only raw logs and anecdotal examples]
 
 ---
 
@@ -112,6 +122,10 @@ Describe the core product flows most relevant to AI features.
 - [e.g., Search responses must return within 3 seconds]
 - [e.g., Listing description generation can be async — up to 30 seconds is fine]
 - [List latency expectations per feature or flow]
+
+**Autonomy and action constraints:**
+- [e.g., Agent may recommend actions but user must confirm before external actions]
+- [e.g., No outbound messages, purchases, or account changes without deterministic guardrails]
 
 **Compliance & privacy:**
 - [e.g., KVKK compliance required — user data cannot leave Turkey]

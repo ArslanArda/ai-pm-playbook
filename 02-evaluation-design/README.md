@@ -38,9 +38,11 @@ If those questions are not answered, evaluation will produce data but not decisi
 ## What This Section Covers
 
 - [`SKILL.md`](./SKILL.md): guided workflow for designing an evaluation system
+- [`frameworks/agent-prompt-to-eval-pack.md`](./frameworks/agent-prompt-to-eval-pack.md): how to turn an agent prompt into an evaluation strategy, grader prompt, and starter CSV dataset
 - [`frameworks/grader-agent-pattern.md`](./frameworks/grader-agent-pattern.md): using LLM graders to evaluate LLM outputs without fooling yourself
 - [`frameworks/error-analysis.md`](./frameworks/error-analysis.md): how to categorize failures so the team knows what to fix
 - [`frameworks/eval-data-strategy.md`](./frameworks/eval-data-strategy.md): how to build and maintain datasets that stay useful over time
+- [`examples/agent-rubric-dataset.csv`](./examples/agent-rubric-dataset.csv): starter CSV shape for an agent-oriented rubric dataset
 - [`examples/multi-turn-context-management.md`](./examples/multi-turn-context-management.md): artifact-heavy example of evaluating a text-only conversational search agent that updates intent across turns
 
 ## The Evaluation Loop
@@ -85,6 +87,16 @@ If the feature carries context across turns, do not evaluate it only on isolated
 
 Otherwise you will miss the most harmful failures: dropped prior context, stale carryover, and wrong reset behavior.
 
+### Recommendation 6: If you already have an agent prompt, bootstrap the eval from it
+
+A prompt often contains the first usable definition of the agent's intended behavior. Treat it as raw material, not as the final truth.
+
+Use it to generate:
+
+- an evaluation strategy
+- a grader prompt
+- a starter CSV dataset with common, edge, and blocker cases
+
 ## When To Use This Section
 
 Use it when:
@@ -94,6 +106,7 @@ Use it when:
 - leadership asks whether the feature is “good enough”
 - routing or model changes need a reliable before/after comparison
 - user complaints are arriving, but failure patterns are still vague
+- you already have an agent prompt and need a first-pass eval pack quickly
 
 Use it together with:
 

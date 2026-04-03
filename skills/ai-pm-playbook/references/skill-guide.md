@@ -1,10 +1,12 @@
 # AI PM Playbook Skill Guide
 
-This is an integrated Codex skill for AI product-management work.
+This is an agent-centered Codex skill for AI product-management work.
+
+Short version: it is a PM judgment system for AI agents, not a general AI build guide.
 
 It is not a repository tour and it should not answer by pointing the user at folders unless they explicitly want source material. The job of the skill is to read the relevant material, combine the right modules, and help the user produce a decision or artifact.
 
-Treat it as one operating system, not a set of isolated tricks. In real product work:
+Treat it as one operating system, not a set of isolated tricks. The primary lens is agent and tool design, but the surrounding PM decisions still matter. In real product work:
 
 - the PRD affects the eval plan
 - the eval plan affects prompt and model choices
@@ -16,23 +18,43 @@ Treat it as one operating system, not a set of isolated tricks. In real product 
 
 Use the skill to guide end-to-end AI PM work across:
 
-- feature definition
+- agent and tool design
 - evaluation design
 - model strategy
-- agent and tool design
 - prompt behavior
 - AI UX
+- scoped product requirements for agent behavior
 - rollout and operating cadence
+
+Preferred artifacts:
+
+- architecture memo
+- agent PRD
+- eval plan
+- launch review
+- fallback design
 
 ## Default Skill Behavior
 
 1. Identify the real product problem and the concrete deliverable needed.
 2. Load product context from the workspace if available.
-3. Pull in the smallest set of modules needed for the task.
-4. Combine modules when the task clearly spans them.
-5. Produce practical outputs, not generic advice.
-6. Prefer synthesis and recommendation over repo navigation.
-7. If the user provides new product facts and wants them remembered, update the local product context file as part of the workflow.
+3. If product context is missing or weak, use `references/playbook/my-product/qa-reference.md` to gather the minimum useful context before making strong recommendations.
+4. Start from agent system design by default when the task involves orchestration, tool use, or multi-step AI behavior.
+5. Pull in the smallest supporting set of modules needed for the task.
+6. Use PRD material only when it sharpens task boundary, fallback behavior, review rules, edge cases, or launch gates.
+7. Combine modules when the task clearly spans them.
+8. Produce practical outputs, not generic advice.
+9. Prefer synthesis and recommendation over repo navigation.
+10. If the user provides new product facts and wants them remembered, update the local product context file as part of the workflow.
+
+## When Not To Use
+
+This skill is usually the wrong primary tool when the task is:
+
+- SDK or framework implementation
+- low-level model training or fine-tuning research
+- broad ideation with no concrete product decision
+- non-AI product work
 
 ## Product Context Rule
 
@@ -49,7 +71,8 @@ Use this order:
 
 - Be opinionated, but explain tradeoffs.
 - Favor reusable artifacts over abstract brainstorming.
-- Keep PRD, eval, prompt, UX, and launch decisions connected when the task requires it.
+- Keep agent design, eval, prompt, UX, and launch decisions connected when the task requires it.
+- Use PRD thinking to tighten agent scope and quality bars, not to drift into generic product-spec writing.
 - Do not drift into engineering implementation unless the user explicitly asks.
 - Read references yourself and apply them. Do not ask the user to manually stitch the playbook together unless they explicitly want that workflow.
 - When product context changes, keep the local context file current so later tasks benefit automatically.

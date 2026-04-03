@@ -1,6 +1,6 @@
-# AI PRD Template
+# AI Agent PRD Template
 
-Use this template for AI-powered features where model behavior, uncertainty, fallback logic, and evaluation quality matter. Replace the bracketed examples with your own specifics.
+Use this template for tool-using, multi-step, or stateful AI agents where model behavior, uncertainty, fallback logic, evaluation quality, and action controls matter. Replace the bracketed examples with your own specifics.
 
 ---
 
@@ -89,17 +89,18 @@ Describe the end-to-end user experience.
 
 ---
 
-## 7. AI Task Definition
+## 7. Agent Job Definition
 
-**Primary AI job:** [e.g., Convert natural-language search intent into structured filters and response copy grounded in available listings]
+**Primary agent job:** [e.g., Convert natural-language search intent into structured filters, run grounded search, and explain results]
 
 **Subtasks:**
 - [e.g., Intent extraction]
 - [e.g., Ambiguity detection]
+- [e.g., Tool selection or search execution]
 - [e.g., Clarification question generation]
 - [e.g., Response explanation generation]
 
-**What the AI must not do:**
+**What the agent must not do:**
 - [e.g., Invent listing facts]
 - [e.g., Recommend neighborhoods using unsupported external knowledge]
 - [e.g., Pretend uncertainty does not exist]
@@ -109,7 +110,17 @@ Describe the end-to-end user experience.
 
 ---
 
-## 8. Model Strategy Rationale
+## 8. Agent Workflow And Tool Boundaries
+
+- **Workflow steps:** [e.g., Interpret request -> ask clarification if needed -> call search -> summarize grounded results]
+- **Available tools or APIs:** [e.g., Search API, saved-search API, listing details API]
+- **What each tool is allowed to do:** [e.g., Retrieve data only, no external side effects]
+- **Actions that require user confirmation:** [e.g., Sending messages, saving searches, publishing content]
+- **Handoff or escalation conditions:** [e.g., Unsupported legal advice, repeated low confidence, missing required data]
+
+---
+
+## 9. Model Strategy Rationale
 
 - **Required capability:** [e.g., Multilingual intent understanding with low-latency generation]
 - **Why this capability is needed:** [e.g., Queries are messy, implicit, and often multi-constraint]
@@ -119,17 +130,40 @@ Describe the end-to-end user experience.
 
 ---
 
-## 9. Data And Context Requirements
+## 10. Data, Grounding, And State Requirements
 
 - **Structured data required:** [e.g., Listing metadata, location hierarchy, amenity tags]
 - **Unstructured data required:** [e.g., Listing descriptions, prior query logs]
 - **Grounding source:** [e.g., Returned listings only]
+- **State or memory requirements:** [e.g., Preserve prior user constraints within a session, do not persist across sessions in v1]
+- **Tool dependencies:** [e.g., Search API must return normalized structured filters]
 - **Data limitations:** [e.g., Inconsistent amenity tagging in older inventory]
 - **Localization constraints:** [e.g., Turkish-first output, English secondary]
 
 ---
 
-## 10. Success Metrics And Evaluation Criteria
+## 11. Evaluation Strategy
+
+- **Primary eval question:** [e.g., Does the agent interpret intent correctly, use tools accurately, and recover gracefully when uncertain?]
+- **Rubric dimensions:** [e.g., task success, correctness, grounding, tool-use accuracy, fallback behavior, safety]
+- **What is rules-based:** [e.g., JSON format checks, required confirmation before actions]
+- **What is grader-based:** [e.g., relevance, explanation quality, fallback appropriateness]
+- **What is human-reviewed:** [e.g., trust-sensitive blocker cases, sampled customer-facing outputs]
+- **Launch thresholds:** [e.g., >= 90% pass on blocker-free cases, 0 unsafe action-taking cases]
+
+---
+
+## 12. Starter Dataset Plan
+
+- **Dataset sources:** [e.g., historical search logs, support transcripts, PM-written edge cases]
+- **Coverage segments:** [e.g., common requests, ambiguous requests, unsupported asks, tool failures, multilingual cases]
+- **Starter CSV schema:** [e.g., case_id, segment, user_input, prior_state, available_tools, expected_behavior, primary_rubric_dimensions, blocker_failure, notes]
+- **Initial target size:** [e.g., 50-100 cases before beta]
+- **Owner:** [e.g., AI PM with QA partner]
+
+---
+
+## 13. Success Metrics And Evaluation Criteria
 
 ### Business Metrics
 
@@ -142,6 +176,8 @@ Describe the end-to-end user experience.
 - [e.g., Response relevance score >= 4.2/5 from grader + human spot checks]
 - [e.g., Hallucination rate <= 2% on grounded responses]
 - [e.g., Clarification necessity precision >= 80%]
+- [e.g., Tool-use accuracy >= 95% on action-free flows]
+- [e.g., Unsafe or unauthorized action rate = 0 in launch eval set]
 
 ### Operational Metrics
 
@@ -151,28 +187,31 @@ Describe the end-to-end user experience.
 
 ---
 
-## 11. Quality Rubric
+## 14. Quality Rubric
 
 Define what “good” means in plain language.
 
 - **Relevant:** [e.g., The response reflects the user’s stated constraints]
 - **Correct:** [e.g., No invented listing facts or unsupported claims]
+- **Tool-accurate:** [e.g., The agent calls the right tool with the right intent]
 - **Complete enough:** [e.g., Covers the major constraints without bloating]
 - **Transparent:** [e.g., Makes uncertainty visible when interpretation is partial]
 - **Actionable:** [e.g., Helps the user take the next step]
 
 ---
 
-## 12. Fallback Behavior
+## 15. Guardrails And Fallback Behavior
 
 - **When to clarify:** [e.g., Missing budget, conflicting location constraints]
 - **When to show manual UI instead:** [e.g., Low confidence or unsupported request]
 - **When to retry with a fallback model or flow:** [e.g., Primary model timeout]
+- **When action confirmation is required:** [e.g., Before sending messages or making account changes]
+- **Deterministic guardrails:** [e.g., No external actions without validated parameters]
 - **What the user sees:** [Write the exact product behavior, not a technical note]
 
 ---
 
-## 13. Human-In-The-Loop Design
+## 16. Human-In-The-Loop Design
 
 - **Human review needed?:** [Yes / No / Sampled / Flagged only]
 - **Review triggers:** [e.g., High-risk output categories, low confidence, policy-sensitive cases]
@@ -181,7 +220,15 @@ Define what “good” means in plain language.
 
 ---
 
-## 14. Edge Cases And Failure Modes
+## 17. Observability And Review Rhythm
+
+- **Trace or log requirements:** [e.g., User input, tool call chosen, tool result, final answer, fallback trigger]
+- **Review cadence:** [e.g., Daily launch review, weekly eval review, monthly dataset refresh]
+- **Top dashboards:** [e.g., blocker failure rate, fallback rate, tool error rate, latency]
+
+---
+
+## 18. Edge Cases And Failure Modes
 
 List the high-priority cases.
 
@@ -190,15 +237,17 @@ List the high-priority cases.
 - [e.g., Inventory does not match stated constraints]
 - [e.g., User asks follow-up questions that depend on stale conversation state]
 - [e.g., Model output format breaks UI expectations]
+- [e.g., Agent selects the wrong tool or attempts an unauthorized action]
 
 ---
 
-## 15. What Could Go Wrong
+## 19. What Could Go Wrong
 
 - [e.g., The system sounds confident while misreading a critical constraint]
 - [e.g., Clarification loops create friction and increase abandonment]
 - [e.g., The business impact looks good overall but trust drops for power users]
 - [e.g., Human review volume is too high for the team to sustain]
+- [e.g., The agent takes or suggests an action without sufficient confirmation]
 
 For each major risk, note:
 - why it matters
@@ -207,7 +256,7 @@ For each major risk, note:
 
 ---
 
-## 16. Launch Plan
+## 20. Launch Plan
 
 - **Launch type:** [e.g., Internal alpha, invite-only beta, geography-limited rollout]
 - **Launch gate:** [e.g., Must pass eval thresholds and legal review]
@@ -216,7 +265,7 @@ For each major risk, note:
 
 ---
 
-## 17. Open Questions
+## 21. Open Questions
 
 - [e.g., Do we need a persistent conversation state across sessions?]
 - [e.g., Should the clarification question appear before or after initial results?]
@@ -224,9 +273,8 @@ For each major risk, note:
 
 ---
 
-## 18. Appendix
+## 22. Appendix
 
 - Related dashboards: [link or description]
 - Related research: [link or description]
 - Related prompts or eval docs: [link or description]
-

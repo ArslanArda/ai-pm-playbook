@@ -37,6 +37,8 @@ Copy `PRODUCT_CONTEXT.template.md` to `PRODUCT_CONTEXT.md`, then fill in your:
 
 If you only do one setup step in the whole repo, do this one.
 
+If you do not know how to fill it yet, use [`../my-product/qa-reference.md`](../my-product/qa-reference.md) and answer the minimum useful questions first.
+
 If you are using Codex inside this repo, keep `my-product/PRODUCT_CONTEXT.md` in the workspace and let Codex read it directly. The manual paste workflow is mainly for generic LLM chats that cannot access local files.
 
 If you have fresh product information later, you should also be able to type it in chat and ask Codex to merge it into `my-product/PRODUCT_CONTEXT.md` instead of manually rewriting the file each time.
@@ -71,6 +73,7 @@ For Codex specifically, the better workflow is:
 
 - keep `my-product/PRODUCT_CONTEXT.md` in the repo
 - let the installed `ai-pm-playbook` skill read it from disk automatically
+- if the file is missing or stale, ask Codex to use `my-product/qa-reference.md` and update the context file
 - if priorities, constraints, or market context changes, ask Codex to update `my-product/PRODUCT_CONTEXT.md`
 - only paste the file manually if you are working in a plain chat environment without file access
 

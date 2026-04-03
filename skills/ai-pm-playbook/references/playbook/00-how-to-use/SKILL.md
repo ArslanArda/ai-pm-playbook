@@ -1,16 +1,16 @@
-# Skill: Operate The AI PM Playbook Workflow
+# Skill: Use The AI PM Playbook With Your AI Assistant
 
-> **Context:** In Codex, look for `my-product/PRODUCT_CONTEXT.md` in the current workspace first and use it as the default product context. If local file access is unavailable, ask the user to paste product context manually or use the bundled template.
+> **Personalization:** Before starting, paste your completed `my-product/PRODUCT_CONTEXT.md` into the conversation. This skill works without it, but the guidance will be significantly more relevant with your product context loaded.
 
 ## TL;DR
 
-Use this skill when you need to run the AI PM Playbook as an actual working method instead of treating it like documentation. It helps you load product context, choose the right module, structure the interaction, and turn broad AI questions into concrete deliverables tied to your product, team, constraints, and current decision.
+Use this skill when you want to turn the playbook from a static reference into a guided working session with an LLM. It helps you choose the right section, load the right context, structure the conversation, and turn generic AI advice into outputs that are specific to your product, team, constraints, and current decision.
 
 ## When to Use This
 
-- You are not sure which playbook module to start with for your current AI problem
-- You want to run the playbook as a disciplined skill workflow instead of asking for one-shot generic advice
-- You need to turn an open-ended AI PM topic into a concrete deliverable, recommendation, or decision memo
+- You just forked the repo and want to set up the highest-leverage usage pattern
+- You are not sure which playbook section to start with for your current AI problem
+- You want to use `SKILL.md` files with ChatGPT, Claude, Gemini, or another LLM in a disciplined way
 - You are getting generic answers from an LLM and need a better workflow for context loading and guided questioning
 - You want to turn a section into a concrete deliverable such as a PRD, evaluation plan, routing strategy, team ritual, or UX spec
 - You are onboarding another PM or founder to the playbook and want a repeatable process instead of “just browse around”
@@ -18,8 +18,8 @@ Use this skill when you need to run the AI PM Playbook as an actual working meth
 ## Prerequisites
 
 - A rough understanding of the AI feature, product problem, or operating challenge you are working on
-- Your workspace `my-product/PRODUCT_CONTEXT.md` completed at least through Sections 1-3, ideally further
-- Access to the integrated `ai-pm-playbook` skill and the bundled playbook modules
+- Your `my-product/PRODUCT_CONTEXT.md` completed at least through Sections 1-3, ideally further
+- Access to one relevant `SKILL.md` file from the repo
 - A willingness to answer follow-up questions with specifics instead of abstract goals
 - A target output in mind, even if it is still rough, such as “AI PRD draft,” “model decision memo,” or “AI onboarding flow”
 
@@ -34,23 +34,23 @@ Use this skill when you need to run the AI PM Playbook as an actual working meth
 
 ### Step 2: Load Product Context Before Advice
 
-- **What to do:** Load `my-product/PRODUCT_CONTEXT.md` from the workspace before asking the model to solve the problem. If the context file is incomplete or missing, at least provide product overview, users, core flows, and major constraints, then use the bundled template to fill the gaps.
+- **What to do:** Paste your `PRODUCT_CONTEXT.md` into the conversation before asking the model to solve the problem. If the context file is incomplete, at least provide product overview, users, core flows, and major constraints.
 - **Key questions to answer:** Who are the users affected by this work? What flow is being changed? What constraints matter most: cost, latency, compliance, adoption, trust, or quality? What AI maturity level is the team operating at? What current systems or data assets already exist?
 - **Output:** A context-loaded chat where the model can reason about your actual product instead of a generic SaaS example.
-- **Common mistakes:** Asking the model to do detailed work without any product context; leaving out critical constraints such as privacy or language; assuming the model will infer your business model or user needs; defaulting to manual paste when the file already exists locally.
+- **Common mistakes:** Asking the model to do detailed work without any product context; leaving out critical constraints such as privacy or language; assuming the model will infer your business model or user needs.
 
 ### Step 2A: Update Product Context When Reality Changes
 
-- **What to do:** If you have new product facts, market data, constraints, or priorities, update `my-product/PRODUCT_CONTEXT.md` before continuing. In Codex, you can provide the update in chat and let the skill merge it into the file for you.
+- **What to do:** If you have new product facts, market data, constraints, or priorities, add them to `PRODUCT_CONTEXT.md` before continuing. In Codex, you can give the update in chat and ask it to merge the information into the file for you.
 - **Key questions to answer:** Is this a new fact that should persist across future sessions? Which section of the context does it belong in? Does it replace old information or add to it?
 - **Output:** A current product context file that reflects the latest reality.
 - **Common mistakes:** Keeping fresh context only in one conversation; forgetting to replace outdated assumptions; letting the context file drift away from the product’s actual state.
 
-### Step 3: Choose The Right Playbook Module
+### Step 3: Choose The Right Playbook Section
 
-- **What to do:** Match your problem to the module that owns it. If you are doing spec work, start with AI PRD writing. If you are debugging poor outputs, evaluation or prompt debugging may be the right entry point. If the problem is architectural, start with agent system design or model strategy.
+- **What to do:** Match your problem to the section that owns it. If you are doing spec work, start with AI PRD writing. If you are debugging poor outputs, evaluation or prompt debugging may be the right entry point. If the problem is architectural, start with agent system design or model strategy.
 - **Key questions to answer:** Is the core challenge product definition, evaluation, model choice, orchestration, team process, prompt behavior, or user experience? Are you trying to make a build decision, a quality decision, an operating decision, or a UX decision? Which section contains the most direct decision framework for that problem?
-- **Output:** A selected primary module and, if needed, one or two supporting framework files.
+- **Output:** A selected `SKILL.md` file and, if needed, one or two supporting framework files.
 - **Common mistakes:** Starting with agent design because it sounds sophisticated when the real problem is a weak PRD or bad eval design; using prompt iteration to solve a data or UX problem; trying to solve all sections at once.
 
 ### Step 4: Instruct The LLM To Act Like A Guide, Not A Content Generator
@@ -69,7 +69,7 @@ Use this skill when you need to run the AI PM Playbook as an actual working meth
 
 ### Step 6: Pull In Supporting Files Only When They Add Signal
 
-- **What to do:** If the conversation needs more specificity, load one relevant framework, template, or example file. Use examples to ground the work, templates to structure outputs, and frameworks to sharpen a hard decision.
+- **What to do:** If the conversation needs more specificity, add one relevant framework, template, or example file. Use examples to ground the work, templates to structure outputs, and frameworks to sharpen a hard decision.
 - **Key questions to answer:** Are you missing decision logic, output structure, or realism? Would a framework clarify the decision, or would an example help you pattern-match? Is the model confused because it lacks a concrete reference artifact?
 - **Output:** A smaller set of high-signal companion files loaded into the chat.
 - **Common mistakes:** Dumping an entire folder into the conversation; confusing the model with too many overlapping files; using examples as a substitute for your own context.
@@ -111,7 +111,6 @@ Rule of thumb:
 ## Quality Checklist
 
 - [ ] Did I provide enough product context for the model to reason about my actual situation?
-- [ ] Did I update the product context file with any new durable information before moving forward?
 - [ ] Did I define a concrete output or decision before starting?
 - [ ] Did I choose the section that matches the real bottleneck rather than the most fashionable topic?
 - [ ] Did I ask the model to guide me step by step instead of generating generic advice?
@@ -129,12 +128,6 @@ Rule of thumb:
 - **Description:** You paste only the skill or ask a broad question with no product context.
 - **Why it happens:** It feels faster to skip setup, especially when you are in a hurry.
 - **What to do instead:** Provide at least product overview, users, flow, and major constraints before asking for advice.
-
-### 1A. The Stale-Context Trap
-
-- **Description:** You have new business realities, but the product context file still reflects the old world.
-- **Why it happens:** Teams discuss changes in chat or meetings and assume everyone will remember them later.
-- **What to do instead:** Merge durable new facts into `my-product/PRODUCT_CONTEXT.md` as soon as they matter for future product decisions.
 
 ### 2. The Section Mismatch
 
