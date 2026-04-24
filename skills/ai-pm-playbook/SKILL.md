@@ -22,7 +22,7 @@ Use this skill to produce one of these default outputs:
 - `architecture memo`: whether the workflow should be non-agentic, single-agent, or multi-step, with rationale
 - `agent PRD`: product requirements for an AI agent including scope, tools, evals, datasets, fallback behavior, and launch gates
 - `agent instruction pack`: decision-backed single-agent or multi-agent instructions including tool boundaries, shared rules, and fallback behavior
-- `eval plan`: evaluation strategy, rubric, grader approach, and starter dataset plan
+- `eval plan`: evaluation strategy, rubric, evaluator approach, and starter dataset plan
 - `launch review`: decision-ready review of launch blockers, risks, and rollout readiness
 - `fallback design`: user-facing fallback, escalation, and human-review behavior
 
@@ -32,7 +32,7 @@ Use one of these prompts on the first working session:
 
 1. "Here is my workflow and product context. Should this stay prompt-only, become a single agent, or become a multi-step system?"
    Expected output: `architecture memo`
-2. "Here is my agent or system prompt. Turn it into an evaluation strategy, grader prompt, and starter CSV rubric dataset."
+2. "Here is my agent or system prompt. Turn it into an evaluation strategy, the right evaluator implementation, and a starter CSV rubric dataset."
    Expected output: `eval plan`
 3. "Help me write an agent PRD for this workflow, including tools, fallback behavior, human review, eval strategy, and launch criteria."
    Expected output: `agent PRD`
@@ -91,8 +91,9 @@ Use these bundled playbook areas together when the task requires it. Start from 
 14. Pull in prompt engineering when the main challenge is writing stable behavior contracts, but keep architecture and tool-boundary decisions primary.
 15. Pull in PRD writing only when the agent design needs clearer task boundaries, fallback behavior, human review rules, rollout logic, or launch criteria.
 16. Treat eval, prompts, model strategy, orchestration, UX, and rollout decisions as connected when they are connected in the user’s actual workflow.
-17. Produce a concrete output: a draft architecture memo, agent PRD, agent instruction pack, eval plan, launch review, fallback design, system recommendation, or prioritized next-step plan.
-18. Keep guidance practical, opinionated, and PM-oriented.
+17. When producing an eval plan, do not assume the grader must be LLM-as-judge. Choose the evaluator type that fits the agent: rule-based, LLM-as-judge, hybrid, or human-review-primary.
+18. Produce a concrete output: a draft architecture memo, agent PRD, agent instruction pack, eval plan, launch review, fallback design, system recommendation, or prioritized next-step plan.
+19. Keep guidance practical, opinionated, and PM-oriented.
 
 ## Working rules
 

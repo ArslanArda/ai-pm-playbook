@@ -38,7 +38,7 @@ If those questions are not answered, evaluation will produce data but not decisi
 ## What This Section Covers
 
 - [`SKILL.md`](./SKILL.md): guided workflow for designing an evaluation system
-- [`frameworks/agent-prompt-to-eval-pack.md`](./frameworks/agent-prompt-to-eval-pack.md): how to turn an agent prompt into an evaluation strategy, grader prompt, and starter CSV dataset
+- [`frameworks/agent-prompt-to-eval-pack.md`](./frameworks/agent-prompt-to-eval-pack.md): how to turn an agent prompt into an evaluation strategy, the right evaluator implementation for that agent, and a starter CSV dataset
 - [`frameworks/grader-agent-pattern.md`](./frameworks/grader-agent-pattern.md): using LLM graders to evaluate LLM outputs without fooling yourself
 - [`frameworks/error-analysis.md`](./frameworks/error-analysis.md): how to categorize failures so the team knows what to fix
 - [`frameworks/eval-data-strategy.md`](./frameworks/eval-data-strategy.md): how to build and maintain datasets that stay useful over time
@@ -69,6 +69,10 @@ If you do not know what counts as good, more examples will not save you.
 
 LLM graders can save time and increase coverage, but only if you calibrate them against human judgment and understand where they drift.
 
+### Recommendation 2A: Do not force every agent into the same evaluator shape
+
+Some agents should be judged mainly by rules, some by an LLM judge, and many by a hybrid setup. The evaluator type should follow the agent behavior, not a template habit.
+
 ### Recommendation 3: Error categories matter more than average scores
 
 An average score of 4.1 is far less useful than knowing that the system fails mostly on multilingual queries, unsupported requests, or low-data cases.
@@ -94,7 +98,7 @@ A prompt often contains the first usable definition of the agent's intended beha
 Use it to generate:
 
 - an evaluation strategy
-- a grader prompt
+- the right evaluator implementation
 - a starter CSV dataset with common, edge, and blocker cases
 
 ## When To Use This Section
