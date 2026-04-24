@@ -41,6 +41,7 @@ If you disagree with one of those defaults, good. The repo is designed to make t
 ## What This Repo Is For
 
 - Writing tighter agent PRDs with tool boundaries, fallback behavior, launch gates, and human review rules
+- Turning an agent idea into a production-ready single-agent or multi-agent instruction pack with tool definitions and fallback rules
 - Turning an agent prompt into an evaluation strategy, grader prompt, and starter CSV rubric dataset
 - Deciding whether a workflow should stay prompt-only, become a single agent, or become a multi-step system
 - Designing launch reviews, fallback logic, and PM operating cadence for AI work
@@ -97,10 +98,11 @@ If you are planning a new AI agent, the most useful sequence is usually:
 1. [`my-product/`](./my-product/README.md): capture product context or use the QA reference to collect it quickly
 2. [`01-ai-prd-writing`](./01-ai-prd-writing/README.md): define the user problem, agent job, tool boundaries, eval strategy, fallback behavior, and launch criteria
 3. [`04-ai-agent-system-design`](./04-ai-agent-system-design/README.md): decide whether the workflow should stay simple, become tool-using, or become multi-step
-4. [`02-evaluation-design`](./02-evaluation-design/README.md): define the rubric, grader approach, starter CSV dataset, and error taxonomy
-5. [`03-model-strategy`](./03-model-strategy/README.md): decide whether prompt-first, routing, or model adaptation is justified
-6. [`07-ai-ux-patterns`](./07-ai-ux-patterns/README.md): design how the experience behaves under latency, ambiguity, failure, and low confidence
-7. [`05-ai-team-operations`](./05-ai-team-operations/README.md): run the work with explicit review rituals and launch gates
+4. [`04-ai-agent-system-design/frameworks/agent-instruction-pack.md`](./04-ai-agent-system-design/frameworks/agent-instruction-pack.md): turn that architecture into a production-ready single-agent or multi-agent instruction set
+5. [`02-evaluation-design`](./02-evaluation-design/README.md): define the rubric, grader approach, starter CSV dataset, and error taxonomy
+6. [`03-model-strategy`](./03-model-strategy/README.md): decide whether prompt-first, routing, or model adaptation is justified
+7. [`07-ai-ux-patterns`](./07-ai-ux-patterns/README.md): design how the experience behaves under latency, ambiguity, failure, and low confidence
+8. [`05-ai-team-operations`](./05-ai-team-operations/README.md): run the work with explicit review rituals and launch gates
 
 That is the real thesis of the repo: AI PM work becomes much easier when those decisions stop living in separate conversations.
 
@@ -136,6 +138,8 @@ That skill is designed to:
 - read `my-product/PRODUCT_CONTEXT.md` from the workspace
 - ask focused product questions when context is missing or stale
 - route across PRD, eval, model, prompt, UX, and ops modules as needed
+- decide whether an agent request should stay single-agent or become multi-agent before writing instructions
+- generate single-agent or multi-agent instruction packs with tool boundaries and fallback rules
 - generate eval plans from agent prompts
 - update product context when you give fresh facts in chat
 - help produce concrete deliverables instead of only pointing at docs

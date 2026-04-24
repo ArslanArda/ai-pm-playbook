@@ -21,6 +21,7 @@ Use this skill to produce one of these default outputs:
 
 - `architecture memo`: whether the workflow should be non-agentic, single-agent, or multi-step, with rationale
 - `agent PRD`: product requirements for an AI agent including scope, tools, evals, datasets, fallback behavior, and launch gates
+- `agent instruction pack`: decision-backed single-agent or multi-agent instructions including tool boundaries, shared rules, and fallback behavior
 - `eval plan`: evaluation strategy, rubric, grader approach, and starter dataset plan
 - `launch review`: decision-ready review of launch blockers, risks, and rollout readiness
 - `fallback design`: user-facing fallback, escalation, and human-review behavior
@@ -39,6 +40,8 @@ Use one of these prompts on the first working session:
    Expected output: `launch review`
 5. "I do not have product context written yet. Ask me the minimum questions needed and update `my-product/PRODUCT_CONTEXT.md`."
    Expected output: `product context update`
+6. "Here is the agent I want. Decide whether it should be single-agent or multi-agent, define the needed tools, and write the production-ready instruction set."
+   Expected output: `agent instruction pack`
 
 ## When Not To Use This Skill
 
@@ -82,10 +85,14 @@ Use these bundled playbook areas together when the task requires it. Start from 
 8. When updating product context, merge the new information into the right sections, preserve useful existing details, and normalize the content into the template structure instead of dumping raw notes.
 9. If the context file does not exist yet and the user provides product details, create `my-product/PRODUCT_CONTEXT.md` from the bundled template and fill it with the provided information.
 10. Default to `references/playbook/04-ai-agent-system-design/` when the task involves orchestration, tool use, routing, or multi-step AI behavior.
-11. Pull in PRD writing only when the agent design needs clearer task boundaries, fallback behavior, human review rules, rollout logic, or launch criteria.
-12. Treat eval, prompts, model strategy, orchestration, UX, and rollout decisions as connected when they are connected in the user’s actual workflow.
-13. Produce a concrete output: a draft architecture memo, agent PRD, eval plan, launch review, fallback design, system recommendation, or prioritized next-step plan.
-14. Keep guidance practical, opinionated, and PM-oriented.
+11. When the user asks for an agent instruction, first decide whether the workflow should stay bounded as a single agent or split into multiple agents, even if the user already has a preferred architecture in mind.
+12. Use `references/playbook/04-ai-agent-system-design/frameworks/agent-instruction-pack.md` when the output should be a production-ready single-agent or multi-agent instruction set.
+13. Define tool boundaries before writing the instruction text: what tools exist, who may call them, what each tool is for, and which actions need validation, approval, or escalation.
+14. Pull in prompt engineering when the main challenge is writing stable behavior contracts, but keep architecture and tool-boundary decisions primary.
+15. Pull in PRD writing only when the agent design needs clearer task boundaries, fallback behavior, human review rules, rollout logic, or launch criteria.
+16. Treat eval, prompts, model strategy, orchestration, UX, and rollout decisions as connected when they are connected in the user’s actual workflow.
+17. Produce a concrete output: a draft architecture memo, agent PRD, agent instruction pack, eval plan, launch review, fallback design, system recommendation, or prioritized next-step plan.
+18. Keep guidance practical, opinionated, and PM-oriented.
 
 ## Working rules
 
@@ -95,6 +102,9 @@ Use these bundled playbook areas together when the task requires it. Start from 
 - Preserve the structured template and rewrite terse notes into clean, durable context.
 - Ask a follow-up question only when the user’s update is too ambiguous to place safely.
 - Start from agent design, then pull in adjacent modules only where they sharpen the decision.
+- If the user asks for an agent instruction or system prompt, do not jump straight to text generation; first decide the architecture, jobs, and tool boundaries.
+- If the user asks for a multi-agent workflow, challenge whether specialization, context isolation, tool separation, or failure isolation actually justify it.
+- For multi-agent outputs, produce shared rules plus agent-specific instructions with explicit handoff and final-answer ownership.
 - Treat PRD material as support for task boundary and launch quality, not as the default frame for every request.
 - Do not keep modules artificially separate if the task clearly crosses boundaries.
 - Prefer the relevant section `SKILL.md`, template, and one or two frameworks over bulk-loading everything at once.

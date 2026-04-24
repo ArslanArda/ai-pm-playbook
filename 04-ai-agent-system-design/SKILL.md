@@ -23,6 +23,13 @@ Use this skill when your AI feature has become multi-step enough that prompt-onl
 - At least rough constraints on cost, compliance, and risk tolerance
 - Some understanding of what tools, data sources, or APIs the system may need
 
+## Default Outputs
+
+- architecture recommendation
+- tool and boundary map
+- single-agent instruction
+- multi-agent instruction pack
+
 ## Step-by-Step Process
 
 ### Step 1: Confirm That The Product Problem Actually Requires Orchestration
@@ -81,6 +88,13 @@ Use this skill when your AI feature has become multi-step enough that prompt-onl
 - **Output:** A concise architecture decision memo suitable for product and engineering review.
 - **Common mistakes:** Ending with a diagram but no recommendation; failing to document rejected alternatives; leaving critical assumptions implicit.
 
+### Step 9: Convert The Recommendation Into An Instruction Pack
+
+- **What to do:** After choosing the architecture, produce the actual instruction set the team can use. If the workflow should stay single-agent, write one bounded instruction. If it should be multi-agent, write shared rules plus coordinator and specialist instructions with handoff rules.
+- **Key questions to answer:** Which jobs belong to which agent? Which tools can each agent call? Which rules should be global versus agent-specific? Who owns the final answer? What happens on ambiguity, tool failure, low confidence, or unsupported requests?
+- **Output:** A production-ready single-agent instruction or multi-agent instruction pack with tool boundaries and fallback behavior.
+- **Common mistakes:** Copying the same prompt across multiple agents; treating the user’s requested architecture as correct without challenge; listing tools without caller-specific rules; skipping escalation or ownership of the final answer.
+
 ## Decision Framework
 
 Use this scorecard before choosing a more complex design.
@@ -106,6 +120,7 @@ Default rule:
 - [ ] Did we map the workflow into distinct jobs with clear product meaning?
 - [ ] Did we choose the smallest architecture that can deliver the required behavior?
 - [ ] Did we define what is deterministic, what is tool-based, and what is model-driven?
+- [ ] Did we turn the recommendation into a production-ready single-agent instruction or multi-agent instruction pack?
 - [ ] Did we specify input validation, output validation, and user-facing fallback behavior?
 - [ ] Did we set latency and cost budgets before locking the design?
 - [ ] Did we define observability at the step level, not just end-to-end?

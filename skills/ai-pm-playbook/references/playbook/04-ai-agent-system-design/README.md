@@ -77,6 +77,7 @@ The default recommendation is simple:
 
 - [`SKILL.md`](./SKILL.md): guided workflow for deciding whether and how to design an agent system
 - [`frameworks/single-vs-multi-agent.md`](./frameworks/single-vs-multi-agent.md): when multi-agent architecture is justified and when it is overkill
+- [`frameworks/agent-instruction-pack.md`](./frameworks/agent-instruction-pack.md): how to turn an agent idea into a single-agent or multi-agent instruction set with tool boundaries
 - [`frameworks/agent-pipeline-patterns.md`](./frameworks/agent-pipeline-patterns.md): the main orchestration patterns and their tradeoffs
 - [`frameworks/tool-and-mcp-design.md`](./frameworks/tool-and-mcp-design.md): how to think about tools, schemas, and tool boundaries as product decisions
 - [`frameworks/guardrails-and-routing.md`](./frameworks/guardrails-and-routing.md): input validation, output validation, safety layers, and fallback routing

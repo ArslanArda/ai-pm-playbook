@@ -30,6 +30,7 @@ Preferred artifacts:
 
 - architecture memo
 - agent PRD
+- agent instruction pack
 - eval plan
 - launch review
 - fallback design
@@ -40,12 +41,14 @@ Preferred artifacts:
 2. Load product context from the workspace if available.
 3. If product context is missing or weak, use `references/playbook/my-product/qa-reference.md` to gather the minimum useful context before making strong recommendations.
 4. Start from agent system design by default when the task involves orchestration, tool use, or multi-step AI behavior.
-5. Pull in the smallest supporting set of modules needed for the task.
-6. Use PRD material only when it sharpens task boundary, fallback behavior, review rules, edge cases, or launch gates.
-7. Combine modules when the task clearly spans them.
-8. Produce practical outputs, not generic advice.
-9. Prefer synthesis and recommendation over repo navigation.
-10. If the user provides new product facts and wants them remembered, update the local product context file as part of the workflow.
+5. If the user asks for an agent instruction or prompt, decide first whether the workflow should be single-agent or multi-agent instead of taking the requested architecture for granted.
+6. Define tool boundaries and caller-specific tool rules before writing the instruction text.
+7. Pull in the smallest supporting set of modules needed for the task.
+8. Use PRD material only when it sharpens task boundary, fallback behavior, review rules, edge cases, or launch gates.
+9. Combine modules when the task clearly spans them.
+10. Produce practical outputs, not generic advice.
+11. Prefer synthesis and recommendation over repo navigation.
+12. If the user provides new product facts and wants them remembered, update the local product context file as part of the workflow.
 
 ## When Not To Use
 
@@ -72,6 +75,7 @@ Use this order:
 - Be opinionated, but explain tradeoffs.
 - Favor reusable artifacts over abstract brainstorming.
 - Keep agent design, eval, prompt, UX, and launch decisions connected when the task requires it.
+- Treat agent instructions as decision-backed behavior contracts, not isolated prompt-writing exercises.
 - Use PRD thinking to tighten agent scope and quality bars, not to drift into generic product-spec writing.
 - Do not drift into engineering implementation unless the user explicitly asks.
 - Read references yourself and apply them. Do not ask the user to manually stitch the playbook together unless they explicitly want that workflow.

@@ -7,7 +7,7 @@ These are modules inside one skill, not separate skills. The skill is agent-cent
 ## Default Starting Point
 
 - `references/playbook/04-ai-agent-system-design/`
-  Use first for orchestration choices, tool boundaries, single-vs-multi-agent decisions, guardrails, observability, and cost-latency tradeoffs.
+  Use first for orchestration choices, tool boundaries, single-vs-multi-agent decisions, agent instruction packs, guardrails, observability, and cost-latency tradeoffs.
 
 ## Context Intake
 
@@ -38,6 +38,9 @@ These are modules inside one skill, not separate skills. The skill is agent-cent
 
 - New agentic feature:
   agent system design + PRD writing + evaluation design + AI UX
+
+- Agent instruction request:
+  agent system design + prompt engineering + evaluation design
 
 - Tool-using workflow:
   agent system design + model strategy + evaluation design
