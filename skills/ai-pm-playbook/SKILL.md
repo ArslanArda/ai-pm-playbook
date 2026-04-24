@@ -21,7 +21,7 @@ Use this skill to produce one of these default outputs:
 
 - `architecture memo`: whether the workflow should be non-agentic, single-agent, or multi-step, with rationale
 - `agent PRD`: product requirements for an AI agent including scope, tools, evals, datasets, fallback behavior, and launch gates
-- `eval plan`: evaluation strategy, rubric, grader approach, and starter dataset plan
+- `eval plan`: evaluation strategy, rubric, evaluator approach, and starter dataset plan
 - `launch review`: decision-ready review of launch blockers, risks, and rollout readiness
 - `fallback design`: user-facing fallback, escalation, and human-review behavior
 
@@ -31,7 +31,7 @@ Use one of these prompts on the first working session:
 
 1. "Here is my workflow and product context. Should this stay prompt-only, become a single agent, or become a multi-step system?"
    Expected output: `architecture memo`
-2. "Here is my agent or system prompt. Turn it into an evaluation strategy, grader prompt, and starter CSV rubric dataset."
+2. "Here is my agent or system prompt. Turn it into an evaluation strategy, the right evaluator implementation, and a starter CSV rubric dataset."
    Expected output: `eval plan`
 3. "Help me write an agent PRD for this workflow, including tools, fallback behavior, human review, eval strategy, and launch criteria."
    Expected output: `agent PRD`
@@ -84,8 +84,9 @@ Use these bundled playbook areas together when the task requires it. Start from 
 10. Default to `references/playbook/04-ai-agent-system-design/` when the task involves orchestration, tool use, routing, or multi-step AI behavior.
 11. Pull in PRD writing only when the agent design needs clearer task boundaries, fallback behavior, human review rules, rollout logic, or launch criteria.
 12. Treat eval, prompts, model strategy, orchestration, UX, and rollout decisions as connected when they are connected in the user’s actual workflow.
-13. Produce a concrete output: a draft architecture memo, agent PRD, eval plan, launch review, fallback design, system recommendation, or prioritized next-step plan.
-14. Keep guidance practical, opinionated, and PM-oriented.
+13. When producing an eval plan, do not assume the grader must be LLM-as-judge. Choose the evaluator type that fits the agent: rule-based, LLM-as-judge, hybrid, or human-review-primary.
+14. Produce a concrete output: a draft architecture memo, agent PRD, eval plan, launch review, fallback design, system recommendation, or prioritized next-step plan.
+15. Keep guidance practical, opinionated, and PM-oriented.
 
 ## Working rules
 

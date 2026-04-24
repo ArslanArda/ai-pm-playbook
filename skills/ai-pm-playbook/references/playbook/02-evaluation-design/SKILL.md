@@ -4,12 +4,12 @@
 
 ## TL;DR
 
-Use this skill when you need to define how an AI feature or agent will be judged before launch and improved after launch. It helps you turn vague quality goals into a rubric, decide what should be graded by rules, humans, or LLMs, draft a grader prompt, and build a starter CSV dataset with common, edge, and blocker cases.
+Use this skill when you need to define how an AI feature or agent will be judged before launch and improved after launch. It helps you turn vague quality goals into a rubric, decide what should be graded by rules, humans, or LLMs, choose the right evaluator implementation, and build a starter CSV dataset with common, edge, and blocker cases.
 
 If you already have an agent prompt, use this skill to bootstrap an eval pack:
 
 - evaluation strategy
-- grader agent prompt
+- evaluator implementation
 - starter rubric dataset in CSV format
 
 ## When to Use This
@@ -45,42 +45,49 @@ If you already have an agent prompt, use this skill to bootstrap an eval pack:
 - **Output:** A feature-specific quality rubric.
 - **Common mistakes:** Starting with generic scores; mixing user value and internal convenience; omitting agent-specific dimensions like tool choice or state handling.
 
-### Step 3: Decide What Needs Rules, Humans, Or Graders
+### Step 3: Choose The Evaluator Architecture
+
+- **What to do:** Decide which parts of the rubric should be owned by rules, an LLM judge, hybrid logic, or humans.
+- **Key questions to answer:** Which failures are deterministic? Which quality judgments are interpretive? Which dimensions are too sensitive or fuzzy to automate yet? Should the evaluator be rule-based, LLM-as-judge, hybrid, or human-review-primary?
+- **Output:** An evaluator architecture with explicit ownership by dimension.
+- **Common mistakes:** Defaulting to LLM-as-judge for everything; using humans for checks that should be deterministic; failing to separate hard blockers from softer quality judgment.
+
+### Step 4: Decide What Needs Rules, Humans, Or Graders
 
 - **What to do:** Separate what can be evaluated deterministically, what needs human review, and what can be graded by an LLM.
 - **Key questions to answer:** Which checks are rules-based? Which quality dimensions require interpretation? Which risk areas demand human oversight at least during calibration? Which dimensions can a grader judge reliably?
 - **Output:** A scoring plan by signal type.
 - **Common mistakes:** Assuming graders can replace humans immediately; asking humans to judge things a rule could judge faster; grading without a clear rubric.
 
-### Step 4: Build The Starter Dataset In CSV Form
+### Step 5: Build The Starter Dataset In CSV Form
 
 - **What to do:** Collect a representative set of examples covering common, edge, adversarial, and blocker cases, then structure them into a CSV that the team can extend.
 - **Key questions to answer:** What are the top real-world request types? Which edge cases deserve deliberate coverage? Which blocker failures must appear in the starter set? What should each CSV row capture: user input, prior state, expected behavior, rubric focus, or tool context?
 - **Output:** A starter eval dataset in CSV format with clear scenario coverage.
 - **Common mistakes:** Sampling only happy-path examples; over-optimizing for quantity before coverage; storing examples in unstructured notes instead of a reusable dataset format.
 
-### Step 5: Draft The Grader Agent Prompt
+### Step 6: Draft The Evaluator Implementation
 
-- **What to do:** Write a grader prompt that uses the rubric consistently and returns structured output.
-- **Key questions to answer:** What context should the grader receive: user input, prior state, tool traces, final answer, expected behavior? Which dimensions should be scored numerically, pass/fail, or both? What evidence should the grader cite?
-- **Output:** A grader agent prompt with clear scoring rules and response format.
-- **Common mistakes:** Making the grader too vague; letting polished language hide incorrect behavior; failing to require rationale or structured output.
+- **What to do:** Implement the evaluator artifact that matches the chosen architecture.
+- **Key questions to answer:** If rule-based, what exact checks and error codes are needed? If LLM-as-judge, what context, dimensions, and output schema should the grader receive? If hybrid, which blockers are rules-owned and which dimensions are grader-owned? If human-review-primary, what reviewer rubric and adjudication process are needed?
+- **Output:** A rule-based checker spec, grader prompt, hybrid evaluator design, or human review rubric.
+- **Common mistakes:** Treating “grader prompt” as the only valid output; leaving aggregation logic vague in hybrid systems; failing to define structured output.
 
-### Step 6: Run Baseline Evaluation
+### Step 7: Run Baseline Evaluation
 
 - **What to do:** Score the current system before making large changes so you know what "better" means.
 - **Key questions to answer:** What is the current pass rate or rubric score? Which categories fail most? What is the current latency or fallback behavior on the same set? Which blocker failures appear already?
 - **Output:** A baseline view of quality and failure patterns.
 - **Common mistakes:** Making changes before establishing a baseline; relying only on overall averages.
 
-### Step 7: Calibrate Graders And Analyze Errors
+### Step 8: Calibrate Graders And Analyze Errors
 
-- **What to do:** Compare grader judgments against human judgments on a representative sample, then group failures into categories that imply different fixes.
-- **Key questions to answer:** Where do graders agree with humans? Where do they drift? Are failures caused by prompt ambiguity, missing grounding, bad routing, poor tool choice, poor data, UI mismatch, or unsupported requests? Which category is most user-harmful?
-- **Output:** A grader reliability view plus a ranked error taxonomy.
-- **Common mistakes:** Trusting grader scores without calibration; treating all failures as one bucket; discussing fixes before categorizing the problem.
+- **What to do:** Calibrate the automated parts of the evaluator against humans, then group failures into categories that imply different fixes.
+- **Key questions to answer:** Where do rules miss nuance? Where do graders agree with humans? Where do they drift? Are failures caused by prompt ambiguity, missing grounding, bad routing, poor tool choice, poor data, UI mismatch, or unsupported requests? Which category is most user-harmful?
+- **Output:** Evaluator reliability view plus a ranked error taxonomy.
+- **Common mistakes:** Trusting automated scores without calibration; treating all failures as one bucket; discussing fixes before categorizing the problem.
 
-### Step 8: Set Launch Gates And Ongoing Review
+### Step 9: Set Launch Gates And Ongoing Review
 
 - **What to do:** Turn the eval results into product decisions.
 - **Key questions to answer:** What score or pass threshold is required for launch? Which failure categories are blockers? What gets reviewed daily, weekly, or only after major changes? When do we halt rollout?
@@ -102,6 +109,7 @@ If you already have an agent prompt, use this skill to bootstrap an eval pack:
 
 - [ ] Is the quality rubric specific to the feature or agent?
 - [ ] If starting from a prompt, did we translate prompt promises into testable dimensions?
+- [ ] Did we explicitly choose the right evaluator type instead of defaulting to LLM-as-judge?
 - [ ] Are scoring methods separated into rule-based, human, and grader categories where appropriate?
 - [ ] Does the dataset cover common, edge, and high-risk cases?
 - [ ] Is there a reusable starter dataset in CSV format?
@@ -154,6 +162,17 @@ If you already have an agent prompt, use this skill to bootstrap an eval pack:
 ### Tool-Using Agents
 
 Add explicit rubric dimensions for tool choice, parameter correctness, confirmation behavior, and recovery from tool failure.
+
+These agents are usually best served by a hybrid evaluator:
+
+- rules for tool schema, confirmation gates, and action blockers
+- grader for grounded explanation, fallback quality, and user-facing clarity
+
+### Structured Output Agents
+
+If the main job is extraction, classification, routing, or constrained formatting, start rule-first.
+
+Add an LLM grader only if there is a meaningful quality dimension that rules cannot judge reliably.
 
 ### Multi-Turn Or Stateful Features
 
