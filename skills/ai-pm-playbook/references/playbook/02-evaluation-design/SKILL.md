@@ -1,6 +1,6 @@
 # Skill: Design An Evaluation System For An AI Agent Or Feature
 
-> **Personalization:** Before starting, paste your completed `my-product/PRODUCT_CONTEXT.md` into the conversation. If you already have an agent or system prompt, include that too. This skill becomes much stronger when it can inspect both the product context and the prompt that defines the agent behavior.
+> **Context:** In Codex, look for `my-product/PRODUCT_CONTEXT.md` in the current workspace first and use it as the default product context. If local file access is unavailable, ask the user to paste product context manually or use the bundled template. If you already have an agent or system prompt, include that too so the evaluation design can inspect both product context and intended agent behavior.
 
 ## TL;DR
 

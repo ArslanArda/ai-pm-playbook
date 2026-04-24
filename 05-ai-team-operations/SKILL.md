@@ -1,6 +1,6 @@
 # Skill: Set Up AI Team Operations
 
-> **Personalization:** Before starting, paste your completed `my-product/PRODUCT_CONTEXT.md` into the conversation. This skill works without it, but the guidance will be significantly more relevant with your product context loaded.
+> **Context:** In Codex, look for `my-product/PRODUCT_CONTEXT.md` in the current workspace first and use it as the default product context. If local file access is unavailable, ask the user to paste product context manually or use the bundled template.
 
 ## TL;DR
 

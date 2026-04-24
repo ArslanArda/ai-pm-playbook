@@ -1,6 +1,6 @@
 # Skill: Write An AI Agent PRD
 
-> **Personalization:** Before starting, paste your completed `my-product/PRODUCT_CONTEXT.md` into the conversation. If you already have an agent prompt, tool list, or rough workflow sketch, include those too. This skill is strongest when it can connect product requirements to the actual agent behavior you are considering.
+> **Context:** In Codex, look for `my-product/PRODUCT_CONTEXT.md` in the current workspace first and use it as the default product context. If local file access is unavailable, ask the user to paste product context manually or use the bundled template. If you already have an agent prompt, tool list, or rough workflow sketch, include that too so the PRD can stay aligned with the actual agent behavior.
 
 ## TL;DR
 
